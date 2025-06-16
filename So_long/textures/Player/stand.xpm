@@ -1,0 +1,28 @@
+/* XPM */
+static char *dccfa9faa044428e8b2e73401d69c02ctBY4YPqJ1SxArsLp[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 6 1 ",
+"  c None",
+". c gray3",
+"X c #F85898",
+"o c #FCE0A8",
+"O c #76428A",
+"+ c white",
+/* pixels */
+"      ...       ",
+"    ..XXX..     ",
+"   .XXXXXXX.    ",
+"   .XXXXXXX.    ",
+"   .XXXoXXX.    ",
+"   .XoooooX.    ",
+"  .oX.ooo.Xo.   ",
+"   .X.ooo.X.    ",
+"    .ooooo.     ",
+"   .O.....O.    ",
+"   .OOoooOO.    ",
+"  .o.OOOOO.o.   ",
+" .oo.OOOOO.oo.  ",
+"  ...OO.OO...   ",
+"    .oo.oo.     ",
+"     .o.o.      "
+};
