@@ -6,7 +6,7 @@
 /*   By: vmanuyko <vmanuyko@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:48:18 by vmanuyko          #+#    #+#             */
-/*   Updated: 2025/05/23 14:22:23 by vmanuyko         ###   ########.fr       */
+/*   Updated: 2025/06/18 17:22:59 by vmanuyko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -142,7 +142,7 @@ char	*get_next_line(int fd)
 		lines = tmp;
 	return (line);
 }
-/*
+
 #include <stdio.h>
 #include <fcntl.h>
 
@@ -160,4 +160,3 @@ int main(void)
 	close(fd);
 	return (0);
 }
-*/

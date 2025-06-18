@@ -23,7 +23,7 @@ char    *get_map(int fd)
     map = ft_strdup("");
     if (!map)
     {
-        perror("Error");
+        perror("Error\nReason");
         return (NULL);
     }
     while ((line = get_next_line(fd)) != NULL)
@@ -32,22 +32,28 @@ char    *get_map(int fd)
         map = ft_strjoin(map, line);
         free(line);
         free(tmp);
+        if (!map)
+        {
+            perror("Error\nReason");
+            return (NULL);
+        }
     }
-    // if (check_map(map))
-    // {
-    //     free (map);
-    //     write (2,"Error\n Invalid map\n", 20)
-    //     return (NULL);
-    // }
+    if (!(valid_map(map)))
+    {
+        free (map);
+        return (NULL);
+    }
     return (map);
 }
 
-static int check_ber_file(char *file)
+static int valid_file(char *file)
 {
     size_t  len;
     int     diff;
 
     len = ft_strlen(file);
+    if (len < 5)
+        return (0);
     diff = ft_strncmp(file + (len - 4), ".ber", 4);
     if (!diff)
         return (1);
@@ -67,9 +73,9 @@ int main(int argc, char **argv)
     }
     else
     {
-        if (!(check_ber_file(argv[1])))
+        if (!(valid_file(argv[1])))
         {
-            write (2, "Error\nIncorrect file, expected .ber\n", 37);
+            write (2, "Error\nIncorrect filename\n", 26);
             return (1);
         }
         else
@@ -77,13 +83,15 @@ int main(int argc, char **argv)
             fd = open(argv[1], O_RDONLY);
             if (fd < 0)
             {
-                perror("Error");
+                perror("Error\nOpening file failed");
                 return (1);
             }
             map = get_map(fd);
             if (!map)
                 return (1);
             printf("The map:\n%s", map);
+            free (map);
+            //FIX add clean exit of the shell by exit 1 if errors
         }
     }
 }

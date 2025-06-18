@@ -21,4 +21,11 @@
 #include <fcntl.h>
 #include <errno.h>
 
+//valid_map.c && valid_map_helpers.c
+int valid_map(char *map);
+size_t	get_line_len(char *map);
+int get_total_rows(char *map);
+int wallframe_error(void);
+int valid_row(char *map, int i);
+
 #endif
