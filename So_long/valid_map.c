@@ -26,13 +26,15 @@ static int	rectangular_map(char *map)
 		if (map[i++] == '\n')
 		{
 			if (cur_line_len != line_len)
-			{
-				write (2, "Error\nInvalid map: not rectangular\n", 35);
-				return (0);
-			}
+                return (rectangular_error());
 			cur_line_len = 0;
 		}
 	}
+    if (map[i - 1] != '\n')
+    {
+        if (++cur_line_len != line_len)
+            return (rectangular_error());
+    }
 	return (1);
 }
 
@@ -54,13 +56,21 @@ static int	valid_wallframe(char *map)
         }
         else
         {
-            if (map[i - 1] == '\n' || map[(i++) + 1] == '\n')
+            if (map[i - 1] == '\n')
+            {
+                if (map[i] != '1')
+                    return (wallframe_error());
+            }
+            while (map[i + 1] && map[i + 1] != '\n')
+                i++;
+            if (map[i] != '\n' && (map[i + 1] == '\n' || map[i + 1] == 0))
             {
                 if (map[i] != '1')
                     return (wallframe_error());
             }
             row++;
         }
+        i++;
     }
     return (1);
 }

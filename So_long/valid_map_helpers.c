@@ -26,7 +26,13 @@ size_t	get_line_len(char *map)
 
 int wallframe_error(void)
 {
-    write(2, "Error\nIncorrect wallframe\n", 29);
+    write(2, "Error\nIncorrect wallframe\n", 27);
+    return (0);
+}
+
+int rectangular_error(void)
+{
+    write (2, "Error\nInvalid map: not rectangular\n", 36);
     return (0);
 }
 
@@ -43,6 +49,8 @@ int get_total_rows(char *map)
             total_rows++;
         i++;      
     }
+    if (map[i - 1] != '\n')
+        total_rows++;
     return (total_rows);
 }
 
@@ -51,7 +59,9 @@ int valid_row(char *map, int i)
     while (map[i] && map[i] != '\n')
     {
         if (map[i] != '1')
+        {
             return (0);
+        }
         i++;
     }
     return (i);
