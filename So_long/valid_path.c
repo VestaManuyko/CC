@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-int collectible_check(int x, int y)
+static int collectible_check(int x, int y)
 {
     int col;
 
@@ -25,13 +25,16 @@ int collectible_check(int x, int y)
     return (col);
 }
 
-int reachable_exit(int x, int y)
+static int reachable_exit(int x, int y)
 {
     //go trough the grid from start.player.pos 
     //and see if exit is reachable after collecting all col
     // if found return (1); else return (0);
 }
 
-int valid_path(t_world *world)
-
-
+int valid_path(char *map, t_world *world)
+{
+    create_grid(world, map);
+    // creates a copy of the grid and then with that
+    //calls collectible_check in a looop an then reachable_exit
+}

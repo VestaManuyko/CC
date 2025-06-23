@@ -107,6 +107,8 @@ int	valid_map(char *map, t_world *world)
         return (0);
     if (!valid_wallframe(map, world))
         return (0);
+    if (!valid_path(map, world))
+        return (0);
     else
 	    return (1);
 }
