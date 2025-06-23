@@ -25,8 +25,22 @@
 int valid_map(char *map);
 size_t	get_line_len(char *map);
 int get_total_rows(char *map);
-int wallframe_error(void);
-int rectangular_error(void);
-int valid_row(char *map, int i);
+int error_message(int n);
+size_t valid_edge_row(char *map, size_t i);
+size_t  valid_mid_row(char *map, size_t i);
+
+typedef struct s_coord
+{
+    int y;
+    int x;
+}   t_coord;
+
+typedef struct s_world
+{
+    char    **grid;
+    t_coord grid_size;
+    int     collectibles;
+    t_coord player_pos;
+}   t_world;
 
 #endif

@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-char    *get_map(int fd)
+char    *get_map(int fd, t_world *world)
 {
     char    *line;
     char    *map;
@@ -38,7 +38,7 @@ char    *get_map(int fd)
             return (NULL);
         }
     }
-    if (!(valid_map(map)))
+    if (!(valid_map(map, world)))
     {
         free (map);
         return (NULL);
@@ -65,6 +65,7 @@ int main(int argc, char **argv)
 {
     int fd;
     char *map;
+    t_world world;
 
     if (argc != 2)
     {
@@ -86,7 +87,7 @@ int main(int argc, char **argv)
                 perror("Error\nOpening file failed");
                 return (1);
             }
-            map = get_map(fd);
+            map = get_map(fd, &world);
             if (!map)
                 return (1);
             printf("The map:\n%s", map);
