@@ -48,5 +48,6 @@ size_t  valid_mid_row(char *map, size_t i);
 int valid_path(char *map, t_world *world);
 //grid_handling.c
 void    create_grid(t_world *world, char *map);
+char    **copy_grid(t_world *world);
 
 #endif

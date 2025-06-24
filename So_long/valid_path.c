@@ -12,16 +12,16 @@
 
 #include "so_long.h"
 
-static int collectible_check(t_world *world, int x, int y)
+static int collectible_check(char **copy, int y, int x)
 {
     int col;
 
     col = 0;
-    if (world->grid[x][y] == '1' || world->grid[x][y] == 'S' || world->grid[x][y] == 'E')
+    if (copy[x][y] == '1' || copy[x][y] == 'S' || copy[x][y] == 'E')
         return (col);
-    if (world->grid[x][y] == 'C')
+    if (copy[x][y] == 'C')
         col++;
-    world->grid[x][y] = 'S';
+    copy[x][y] = 'S';
     return (col);
 }
 
@@ -33,10 +33,39 @@ static int reachable_exit(int x, int y)
     // if found return (1); else return (0);
 }
 
+static void get_player_pos(t_world *world)
+{
+    int y;
+    int x;
+
+    y = 0;
+    while (y <= world->grid_size.y)
+    {
+        x = 0;
+        while (x <= world->grid_size.x)
+        {
+            if (world->grid[y][x] == 'P')
+            {
+                world->player_pos.x = x;
+                world->player_pos.y = y;
+                return ;
+            }
+            x++;
+        }
+        y++;
+    }
+}
+
 int valid_path(char *map, t_world *world)
 {
+    char **copy;
+    int col;
+
     create_grid(world, map);
-    return (1);
-    // creates a copy of the grid and then with that
-    //calls collectible_check in a looop an then reachable_exit
+    copy = copy_grid(world);
+    get_player_pos(world);
+    col = collectible_check(copy, world->player_pos.y, world->player_pos.x);
+    if (col != world->collectibles)
+        return (0);
+    
 }
