@@ -13,7 +13,7 @@
 #include "so_long.h"
 
 //from map_str to map_grid (og storage for the game_grid)
-void    init_grid(t_world *world, char *map)
+static void    init_grid(t_world *world, char *map)
 {
     int x;
     int y;
@@ -26,9 +26,8 @@ void    init_grid(t_world *world, char *map)
         x = 0;
         while (map[i] && x <= world->grid_size.x)
         {
-            if (map[i] == '\n')
-                i++;
-            world[y][x] = map[i];
+            if (map[i] != '\n')
+                world->grid[y][x] = map[i];
             x++;
             i++;
         }
