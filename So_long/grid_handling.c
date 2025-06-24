@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-//copy from og grid to copy grid for later valid_path check
+//copy from og grid to copy grid for check_path later
+//so that we can change the copy grid but save og grid
 char    **copy_grid(t_world *world)
 {
     char    **copy[world->grid_size.y][world->grid_size.x];

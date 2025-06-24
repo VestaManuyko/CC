@@ -11,28 +11,7 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static int collectible_check(char **copy, int y, int x)
-{
-    int col;
-
-    col = 0;
-    if (copy[x][y] == '1' || copy[x][y] == 'S' || copy[x][y] == 'E')
-        return (col);
-    if (copy[x][y] == 'C')
-        col++;
-    copy[x][y] = 'S';
-    return (col);
-}
-
-static int reachable_exit(int x, int y)
-{
-    return (0);
-    //go trough the grid from start.player.pos 
-    //and see if exit is reachable after collecting all col
-    // if found return (1); else return (0);
-}
-
+//gets players start position
 static void get_player_pos(t_world *world)
 {
     int y;
@@ -56,16 +35,36 @@ static void get_player_pos(t_world *world)
     }
 }
 
+static int path_check(t_world *world, char **copy, int y, int x, int *col)
+{
+    if (y < 0 || x < 0 || y > world->grid_size.y || x > world->grid_size.x)
+        return (0);
+    if (copy[y][x] == '1' || copy[y][x] == 'S')
+        return (0);
+    if (copy[y][x] == 'C')
+        (*col)++;
+    if (copy[y][x] == 'E')
+        (*col)++;
+    copy[y][x] = 'S';
+    if (path_check(world, copy, y, x + 1, col) ||
+        path_check(world, copy, y, x - 1, col) ||
+        path_check(world, copy, y + 1, x, col) ||
+        path_check(world, copy, y - 1, x, col))
+        return (1);
+    if (col == world->collectibles + 1)
+        return (1);
+    else
+        return (0);
+}
+
 int valid_path(char *map, t_world *world)
 {
     char **copy;
-    int col;
-
     create_grid(world, map);
-    copy = copy_grid(world);
     get_player_pos(world);
-    col = collectible_check(copy, world->player_pos.y, world->player_pos.x);
-    if (col != world->collectibles)
+    copy = copy_grid(world);
+    if (!path_check(world, copy, world->player_pos.y, world->player_pos.x, 0))
         return (0);
-    
+    else 
+        return (1);
 }
