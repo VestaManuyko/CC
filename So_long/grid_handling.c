@@ -65,6 +65,7 @@ void    create_grid(t_world *world, char *map)
     if (!world->grid)
     {
         perror("Error\nCreation of grid failed");
+        free (map);
         exit(1);
     }
     while (y < world->grid_size.y)
@@ -73,6 +74,7 @@ void    create_grid(t_world *world, char *map)
         if (!world->grid[y])
         {
             perror("Error\nCreation of grid failed");
+            free (map);
             exit(1);
         }
         y++;

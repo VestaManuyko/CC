@@ -64,7 +64,10 @@ int valid_path(char *map, t_world *world)
     get_player_pos(world);
     copy = copy_grid(world);
     if (!path_check(world, copy, world->player_pos.y, world->player_pos.x, 0))
+    {
+        write(2, "Error\nNo valid path in the map\n", 32);
         return (0);
+    }
     else 
         return (1);
 }
