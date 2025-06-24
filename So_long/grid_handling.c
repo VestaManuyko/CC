@@ -11,7 +11,26 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
+//copy from og grid to copy grid for later valid_path check
+char    **copy_grid(t_world *world)
+{
+    char    **copy[world->grid_size.y][world->grid_size.x];
+    int     y;
+    int     x;
 
+    y = 0;
+    while (y <= world->grid_size.y)
+    {
+        x = 0;
+        while (x <= world->grid_size.x)
+        {
+            copy[y][x] = world->grid[y][x];
+            x++;
+        }
+        y++;
+    }
+    return (copy);
+}
 //from map_str to map_grid (og storage for the game_grid)
 static void    init_grid(t_world *world, char *map)
 {
