@@ -51,7 +51,7 @@ static int path_check(t_world *world, char **copy, int y, int x, int *col)
         path_check(world, copy, y + 1, x, col) ||
         path_check(world, copy, y - 1, x, col))
         return (1);
-    if (col == world->collectibles + 1)
+    if ((*col) == world->collectibles + 1)
         return (1);
     else
         return (0);
@@ -60,10 +60,13 @@ static int path_check(t_world *world, char **copy, int y, int x, int *col)
 int valid_path(char *map, t_world *world)
 {
     char **copy;
+    int col;
+
+    col = 0;
     create_grid(world, map);
     get_player_pos(world);
     copy = copy_grid(world);
-    if (!path_check(world, copy, world->player_pos.y, world->player_pos.x, 0))
+    if (!path_check(world, copy, world->player_pos.y, world->player_pos.x, &col))
     {
         write(2, "Error\nNo valid path in the map\n", 32);
         return (0);

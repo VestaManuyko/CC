@@ -11,19 +11,48 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
+//for mem allocation for copy_grid
+static char **create_copy(t_world *world)
+{
+    char **copy;
+    int y;
+
+    y = 0;
+    copy = malloc(sizeof(char *) * world->grid_size.y);
+    if (!copy)
+    {
+        perror("Error\nCreation of copy_grid failed");
+        // free(map);
+        //FIX create an extra ft handling freeing and exiting correctly
+        // smth like error_handling.c which handles frees, error messages etc.
+        exit(1);
+    }
+    while (y < world->grid_size.y)
+    {
+        copy[y] = malloc(sizeof(char) * world->grid_size.x);
+        if (!copy[y])
+        {
+            perror("Error\nCreation of copy_grid failed");
+            exit(1);
+        }
+        y++;
+    }
+    return (copy);
+}
 //copy from og grid to copy grid for check_path later
 //so that we can change the copy grid but save og grid
 char    **copy_grid(t_world *world)
 {
-    char    **copy[world->grid_size.y][world->grid_size.x];
+    char    **copy;
     int     y;
     int     x;
 
     y = 0;
-    while (y <= world->grid_size.y)
+    copy = create_copy(world);
+    while (y < world->grid_size.y)
     {
         x = 0;
-        while (x <= world->grid_size.x)
+        while (x < world->grid_size.x)
         {
             copy[y][x] = world->grid[y][x];
             x++;

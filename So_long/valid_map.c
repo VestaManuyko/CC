@@ -76,6 +76,7 @@ static int  valid_composition(char *map, t_world *world)
     i = 0;
     start = 0;
     exit = 0;
+    world->collectibles = 0;
     while (map[i])
     {
         if (map[i] == 'P')
@@ -83,7 +84,7 @@ static int  valid_composition(char *map, t_world *world)
         if (map[i] == 'E')
             exit++;
         if (map[i] == 'C')
-            world->collectibles++;
+            world->collectibles += 1;
         i++;
     }
     if (start != 1 || exit != 1 || world->collectibles == 0)
