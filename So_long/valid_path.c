@@ -12,18 +12,18 @@
 
 #include "so_long.h"
 
-// static int collectible_check(int x, int y)
-// {
-//     int col;
+static int collectible_check(t_world *world, int x, int y)
+{
+    int col;
 
-//     col = 0;
-//     if (grid[x][y] == '1' || grid[x][y] == 'S' || grid[x][y] == 'E')
-//         return (col);
-//     if (grid[x][y] == 'C')
-//         col++;
-//     grid[x][y] = 'S';
-//     return (col);
-// }
+    col = 0;
+    if (world->grid[x][y] == '1' || world->grid[x][y] == 'S' || world->grid[x][y] == 'E')
+        return (col);
+    if (world->grid[x][y] == 'C')
+        col++;
+    world->grid[x][y] = 'S';
+    return (col);
+}
 
 static int reachable_exit(int x, int y)
 {
