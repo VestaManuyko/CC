@@ -11,7 +11,32 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-// create_grid allocates memory for our grid and initializes it
+
+//from map_str to map_grid (og storage for the game_grid)
+void    init_grid(t_world *world, char *map)
+{
+    int x;
+    int y;
+    int i;
+
+    y = 0;
+    i = 0;
+    while (map[i] && y <= world->grid_size.y)
+    {
+        x = 0;
+        while (map[i] && x <= world->grid_size.x)
+        {
+            if (map[i] == '\n')
+                i++;
+            world[y][x] = map[i];
+            x++;
+            i++;
+        }
+        y++;
+    }
+}
+
+// create_grid allocates memory for our grid and calls init_grid
 void    create_grid(t_world *world, char *map)
 {
     int y;
