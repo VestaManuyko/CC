@@ -34,7 +34,7 @@ static void get_player_pos(t_world *world)
         y++;
     }
 }
-
+// flood filling algorithm used to check all the walkable paths etc.
 static int path_check(t_world *world, char **copy, int y, int x, int *col)
 {
     if (y < 0 || x < 0 || y > world->grid_size.y || x > world->grid_size.x)
