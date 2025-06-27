@@ -72,4 +72,6 @@ void clean_up(t_world *world, int clean, int exit)
     }
     if (exit == EXIT_FAILURE)
         exit(1);
+    else
+        exit(0);
 }

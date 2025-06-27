@@ -63,7 +63,6 @@ static int valid_file(char *file)
 int main(int argc, char **argv)
 {
     int fd;
-    char *map;
     t_world world;
 
     if (argc != 2)
@@ -86,11 +85,10 @@ int main(int argc, char **argv)
                 perror("Error\nOpening file failed");
                 return (1);
             }
-            map = get_map(fd, &world);
-            if (!map)
+            if (!get_map(fd, &world))
                 return (1);
             printf("The map:\n%s", map);
-            free (map);
+            clean_up(world, MAP, EXIT_SUCCESS)
             //FIX add clean exit of the shell by exit 1 if errors
         }
     }
