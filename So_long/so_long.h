@@ -31,23 +31,25 @@ typedef struct s_coord
 typedef struct s_world
 {
     char    **grid;
+    char    *map;
+    char    **copy;
     t_coord grid_size;
     int     collectibles;
     t_coord player_pos;
 }   t_world;
 
 //valid_map.c
-int valid_map(char *map, t_world *world);
+int valid_map(t_world *world);
 //valid_map_helpers.c
-size_t	get_line_len(char *map);
-int get_total_rows(char *map, t_world *world);
+size_t	get_line_len(t_world *world);
+int get_total_rows(t_world *world);
 int error_message(int n);
-size_t valid_edge_row(char *map, size_t i);
-size_t  valid_mid_row(char *map, size_t i);
+size_t valid_edge_row(t_world *world, size_t i);
+size_t  valid_mid_row(t_world *world, size_t i);
 //valid_path.c
-int valid_path(char *map, t_world *world);
+int valid_path(t_world *world);
 //grid_handling.c
-void    create_grid(t_world *world, char *map);
+void    create_grid(t_world *world);
 char    **copy_grid(t_world *world);
 
 #endif

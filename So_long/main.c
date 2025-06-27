@@ -15,35 +15,34 @@
 char    *get_map(int fd, t_world *world)
 {
     char    *line;
-    char    *map;
     char    *tmp;
     size_t  len;
 
     len = 0;
-    map = ft_strdup("");
-    if (!map)
+    world->map = ft_strdup("");
+    if (!world->map)
     {
         perror("Error\nReason");
         return (NULL);
     }
     while ((line = get_next_line(fd)) != NULL)
     {
-        tmp = map;
-        map = ft_strjoin(map, line);
+        tmp = world->map;
+        world->map = ft_strjoin(world->map, line);
         free(line);
         free(tmp);
-        if (!map)
+        if (!world->map)
         {
             perror("Error\nReason");
             return (NULL);
         }
     }
-    if (!(valid_map(map, world)))
+    if (!(valid_map(world->map, world)))
     {
-        free (map);
+        free (world->map);
         return (NULL);
     }
-    return (map);
+    return (world->map);
 }
 
 static int valid_file(char *file)

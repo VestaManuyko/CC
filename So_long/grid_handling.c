@@ -14,12 +14,11 @@
 //for mem allocation for copy_grid
 static char **create_copy(t_world *world)
 {
-    char **copy;
     int y;
 
     y = 0;
-    copy = malloc(sizeof(char *) * world->grid_size.y);
-    if (!copy)
+    world->copy = malloc(sizeof(char *) * world->grid_size.y);
+    if (!world->copy)
     {
         perror("Error\nCreation of copy_grid failed");
         // free(map);
@@ -29,40 +28,39 @@ static char **create_copy(t_world *world)
     }
     while (y < world->grid_size.y)
     {
-        copy[y] = malloc(sizeof(char) * world->grid_size.x);
-        if (!copy[y])
+        world->copy[y] = malloc(sizeof(char) * world->grid_size.x);
+        if (!world->copy[y])
         {
             perror("Error\nCreation of copy_grid failed");
             exit(1);
         }
         y++;
     }
-    return (copy);
+    return (world->copy);
 }
 //copy from og grid to copy grid for check_path later
 //so that we can change the copy grid but save og grid
 char    **copy_grid(t_world *world)
 {
-    char    **copy;
     int     y;
     int     x;
 
     y = 0;
-    copy = create_copy(world);
+    create_copy(world);
     while (y < world->grid_size.y)
     {
         x = 0;
         while (x < world->grid_size.x)
         {
-            copy[y][x] = world->grid[y][x];
+            world->copy[y][x] = world->grid[y][x];
             x++;
         }
         y++;
     }
-    return (copy);
+    return (world->copy);
 }
 //from map_str to map_grid (og storage for the game_grid)
-static void    init_grid(t_world *world, char *map)
+static void    init_grid(t_world *world)
 {
     int x;
     int y;
@@ -70,13 +68,13 @@ static void    init_grid(t_world *world, char *map)
 
     y = 0;
     i = 0;
-    while (map[i] && y <= world->grid_size.y)
+    while (world->map[i] && y <= world->grid_size.y)
     {
         x = 0;
-        while (map[i] && x <= world->grid_size.x)
+        while (world->map[i] && x <= world->grid_size.x)
         {
-            if (map[i] != '\n')
-                world->grid[y][x] = map[i];
+            if (world->map[i] != '\n')
+                world->grid[y][x] = world->map[i];
             x++;
             i++;
         }
@@ -85,7 +83,7 @@ static void    init_grid(t_world *world, char *map)
 }
 
 // create_grid allocates memory for our grid and calls init_grid
-void    create_grid(t_world *world, char *map)
+void    create_grid(t_world *world)
 {
     int y;
 
@@ -108,5 +106,5 @@ void    create_grid(t_world *world, char *map)
         }
         y++;
     }
-    init_grid(world, map);
+    init_grid(world);
 }

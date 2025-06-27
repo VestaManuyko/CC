@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "so_long.h"
 
-static int	rectangular_map(char *map, t_world *world)
+static int	rectangular_map(t_world *world)
 {
 	size_t	i;
 	size_t	line_len;
@@ -21,17 +21,17 @@ static int	rectangular_map(char *map, t_world *world)
 	cur_line_len = 0;
 	line_len = get_line_len(map);
     world->grid_size.x = line_len -1; //to store the line length without newline
-	while (map[i])
+	while (world->map[i])
 	{
 		cur_line_len++;
-		if (map[i++] == '\n')
+		if (world->map[i++] == '\n')
 		{
 			if (cur_line_len != line_len)
                 return (error_message(2));
 			cur_line_len = 0;
 		}
 	}
-    if (map[i - 1] != '\n')
+    if (world->map[i - 1] != '\n')
     {
         if (++cur_line_len != line_len)
             return (error_message(2));
@@ -39,25 +39,25 @@ static int	rectangular_map(char *map, t_world *world)
 	return (1);
 }
 
-static int	valid_wallframe(char *map, t_world *world)
+static int	valid_wallframe(t_world *world)
 {
     size_t  i;
     int     row;
 
     i = 0;
     row = 1;
-    while (map[i])
+    while (world->map[i])
     {
-        if (row == 1 || row == get_total_rows(map, world))
+        if (row == 1 || row == get_total_rows(world))
         {
-            i = valid_edge_row(map, i);
+            i = valid_edge_row(world, i);
             if (!i)
                 return (error_message(1));
             row++;
         }
         else
         {
-            i = valid_mid_row(map, i);
+            i = valid_mid_row(world, i);
             if (!i)
                 return (0);
             row++;
@@ -67,7 +67,7 @@ static int	valid_wallframe(char *map, t_world *world)
     return (1);
 }
 
-static int  valid_composition(char *map, t_world *world)
+static int  valid_composition(t_world *world)
 {
     size_t  i;
     int     start;
@@ -77,13 +77,13 @@ static int  valid_composition(char *map, t_world *world)
     start = 0;
     exit = 0;
     world->collectibles = 0;
-    while (map[i])
+    while (world->map[i])
     {
-        if (map[i] == 'P')
+        if (world->map[i] == 'P')
             start++;
-        if (map[i] == 'E')
+        if (world->map[i] == 'E')
             exit++;
-        if (map[i] == 'C')
+        if (world->map[i] == 'C')
             world->collectibles += 1;
         i++;
     }
@@ -95,20 +95,20 @@ static int  valid_composition(char *map, t_world *world)
     return (1);
 }
 
-int	valid_map(char *map, t_world *world)
+int	valid_map(t_world *world)
 {
-    if (!map || !*map)
+    if (!world->map || !world->map[0])
 	{
 		write (2, "Error\nEmpty file\n", 18);
 		return (0);
 	}
-	if (!rectangular_map(map, world))
+	if (!rectangular_map(world))
 		return (0);
-    if (!valid_composition(map, world))
+    if (!valid_composition(world))
         return (0);
-    if (!valid_wallframe(map, world))
+    if (!valid_wallframe(world))
         return (0);
-    if (!valid_path(map, world))
+    if (!valid_path(world))
         return (0);
     else
 	    return (1);
