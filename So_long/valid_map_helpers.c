@@ -30,6 +30,21 @@ int error_message(int n)
         write(2, "Error\nIncorrect wallframe\n", 27);
     else if (n == 2)
         write (2, "Error\nInvalid map: not rectangular\n", 36);
+    else if (n == 3)
+    {
+        write(2, "Error\nIncorrect input! Expected 2 arguments\n", 45);
+        return (1);
+    }
+    else if (n == 4)
+    {
+        write (2, "Error\nIncorrect filename\n", 26);
+        return (1);
+    }
+    else if (n == 5)
+    {
+        perror("Error\nOpening file failed");
+        return (1);
+    }
     return (0);
 }
 

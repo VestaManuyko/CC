@@ -62,25 +62,16 @@ int main(int argc, char **argv)
     t_world world;
 
     if (argc != 2)
-    {
-        write(2, "Error\nIncorrect input! Expected 2 arguments\n", 45);
-        return (1);
-    }
+        return (error_message(3));
     else
     {
         if (!(valid_file(argv[1])))
-        {
-            write (2, "Error\nIncorrect filename\n", 26);
-            return (1);
-        }
+            return (error_message(4));
         else
         {
             fd = open(argv[1], O_RDONLY);
             if (fd < 0)
-            {
-                perror("Error\nOpening file failed");
-                return (1);
-            }
+                return (error_message(5));
             get_map(fd, &world);
             printf("The map:\n%s", world.map);
             clean_up(world, ALL, EXIT_SUCCESS);
