@@ -19,7 +19,7 @@ static int	rectangular_map(t_world *world)
 
 	i = 0;
 	cur_line_len = 0;
-	line_len = get_line_len(map);
+	line_len = get_line_len(world->map);
     world->grid_size.x = line_len -1; //to store the line length without newline
 	while (world->map[i])
 	{
