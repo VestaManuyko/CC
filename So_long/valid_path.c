@@ -63,14 +63,19 @@ int valid_path(char *map, t_world *world)
     int col;
 
     col = 0;
-    create_grid(world, map);
+    create_grid(world);
     get_player_pos(world);
     copy = copy_grid(world);
-    if (!path_check(world, copy, world->player_pos.y, world->player_pos.x, &col))
+    if (!path_check(world, copy, world->player_pos.y, 
+        world->player_pos.x, &col))
     {
         write(2, "Error\nNo valid path in the map\n", 32);
         return (0);
     }
-    else 
+    else
+    {
+        clean_up(world, COPY, NO_EXIT);
         return (1);
-}
+    }
+    }
+        

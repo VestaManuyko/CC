@@ -34,14 +34,10 @@ char    *get_map(int fd, t_world *world)
         if (!world->map)
         {
             perror("Error\nReason");
-            return (NULL);
+            exit (1);
         }
     }
-    if (!(valid_map(world->map, world)))
-    {
-        free (world->map);
-        return (NULL);
-    }
+    valid_map(world->map, world);
     return (world->map);
 }
 
@@ -85,11 +81,9 @@ int main(int argc, char **argv)
                 perror("Error\nOpening file failed");
                 return (1);
             }
-            if (!get_map(fd, &world))
-                return (1);
-            printf("The map:\n%s", map);
-            clean_up(world, MAP, EXIT_SUCCESS)
-            //FIX add clean exit of the shell by exit 1 if errors
+            get_map(fd, &world);
+            printf("The map:\n%s", world.map);
+            clean_up(world, ALL, EXIT_SUCCESS);
         }
     }
 }

@@ -55,13 +55,9 @@ void clean_up(t_world *world, int clean, int exit)
         world->map = NULL;
     }
     else if (clean == GRID)
-    {
         free_grid(world);
-    }
     else if (clean == COPY)
-    {
         free_copy(world);
-    }
     else if (clean == ALL)
     {
         if (world->map)
@@ -72,6 +68,8 @@ void clean_up(t_world *world, int clean, int exit)
     }
     if (exit == EXIT_FAILURE)
         exit(1);
+    if (exit == NO_EXIT)
+        return (0);
     else
         exit(0);
 }

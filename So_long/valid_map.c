@@ -95,21 +95,16 @@ static int  valid_composition(t_world *world)
     return (1);
 }
 
-int	valid_map(t_world *world)
+void	valid_map(t_world *world)
 {
     if (!world->map || !world->map[0])
 	{
 		write (2, "Error\nEmpty file\n", 18);
-		return (0);
+		clean_up(world, ALL, EXIT_FAILURE);
 	}
-	if (!rectangular_map(world))
-		return (0);
-    if (!valid_composition(world))
-        return (0);
-    if (!valid_wallframe(world))
-        return (0);
-    if (!valid_path(world))
-        return (0);
+	if (!rectangular_map(world) || !valid_composition(world)
+        || !valid_wallframe(world) || !valid_path(world))
+        clean_up(world, ALL, EXIT_FAILURE);
     else
-	    return (1);
+	    return (0);
 }

@@ -37,7 +37,7 @@ static char **create_copy(t_world *world)
 }
 //copy from og grid to copy grid for check_path later
 //so that we can change the copy grid but save og grid
-char    **copy_grid(t_world *world)
+void    copy_grid(t_world *world)
 {
     int     y;
     int     x;
@@ -54,7 +54,6 @@ char    **copy_grid(t_world *world)
         }
         y++;
     }
-    return (world->copy);
 }
 //from map_str to map_grid (og storage for the game_grid)
 static void    init_grid(t_world *world)
