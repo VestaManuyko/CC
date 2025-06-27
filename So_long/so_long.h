@@ -22,6 +22,11 @@
 #include <errno.h>
 #include <stdlib.h>
 
+#define MAP 6
+#define GRID 7
+#define COPY 8
+#define ALL 9
+
 typedef struct s_coord
 {
     int y;
@@ -51,5 +56,7 @@ int valid_path(t_world *world);
 //grid_handling.c
 void    create_grid(t_world *world);
 char    **copy_grid(t_world *world);
+//free.c
+void clean_up(t_world *world, int clean, int exit);
 
 #endif

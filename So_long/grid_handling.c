@@ -21,10 +21,7 @@ static char **create_copy(t_world *world)
     if (!world->copy)
     {
         perror("Error\nCreation of copy_grid failed");
-        // free(map);
-        //FIX create an extra ft handling freeing and exiting correctly
-        // smth like error_handling.c which handles frees, error messages etc.
-        exit(1);
+        clean_up(world, MAP, EXIT_FAILURE);
     }
     while (y < world->grid_size.y)
     {
@@ -92,8 +89,7 @@ void    create_grid(t_world *world)
     if (!world->grid)
     {
         perror("Error\nCreation of grid failed");
-        free (map);
-        exit(1);
+        clean_up(world, MAP, EXIT_FAILURE);
     }
     while (y < world->grid_size.y)
     {
@@ -101,8 +97,7 @@ void    create_grid(t_world *world)
         if (!world->grid[y])
         {
             perror("Error\nCreation of grid failed");
-            free (map);
-            exit(1);
+            clean_up(world, MAP, EXIT_FAILURE);
         }
         y++;
     }
