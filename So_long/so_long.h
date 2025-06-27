@@ -13,20 +13,19 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include "mlx.h"
-#include "printf.h"
-#include "get_next_line.h"
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <errno.h>
-#include <stdlib.h>
+# include "mlx.h"
+# include "libft/libft.h"
+# include <stdio.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <errno.h>
+# include <stdlib.h>
 
-#define MAP 6
-#define GRID 7
-#define COPY 8
-#define ALL 9
-#define NO_EXIT 3
+# define MAP 6
+# define GRID 7
+# define COPY 8
+# define ALL 9
+# define NO_EXIT 3
 
 typedef struct s_coord
 {
@@ -47,7 +46,7 @@ typedef struct s_world
 //valid_map.c
 void valid_map(t_world *world);
 //valid_map_helpers.c
-size_t	get_line_len(t_world *world);
+size_t	get_line_len(char *map);
 int get_total_rows(t_world *world);
 int error_message(int n);
 size_t valid_edge_row(t_world *world, size_t i);

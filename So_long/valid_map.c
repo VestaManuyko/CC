@@ -106,5 +106,5 @@ void	valid_map(t_world *world)
         || !valid_wallframe(world) || !valid_path(world))
         clean_up(world, ALL, EXIT_FAILURE);
     else
-	    return (0);
+	    return ;
 }

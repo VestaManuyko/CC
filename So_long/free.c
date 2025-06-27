@@ -21,7 +21,7 @@ static void    free_grid(t_world *world)
         return ;
     while (world->grid[y])
     {
-        free(world->grid[y])
+        free(world->grid[y]);
         y++;
     }
     free(world->grid);
@@ -38,7 +38,7 @@ static void free_copy(t_world *world)
         return ;
     while (world->copy[y])
     {
-        free(world->copy[y])
+        free(world->copy[y]);
         y++;
     }
     free(world->copy);
@@ -46,7 +46,7 @@ static void free_copy(t_world *world)
 }
 //check what needs to be freed based on enum passed as parameters
 //takes pointers from world struct and calls needed helpers
-void clean_up(t_world *world, int clean, int exit)
+void clean_up(t_world *world, int clean, int do_exit)
 {
     if (clean == MAP)
     {
@@ -66,10 +66,8 @@ void clean_up(t_world *world, int clean, int exit)
         free_grid(world);
         free_copy(world);
     }
-    if (exit == EXIT_FAILURE)
-        exit(1);
-    if (exit == NO_EXIT)
-        return (0);
-    else
-        exit(0);
+    if (do_exit == EXIT_FAILURE)
+        exit (1);
+    else if (do_exit == EXIT_SUCCESS)
+        exit (0);
 }

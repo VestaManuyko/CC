@@ -37,7 +37,7 @@ char    *get_map(int fd, t_world *world)
             exit (1);
         }
     }
-    valid_map(world->map, world);
+    valid_map(world);
     return (world->map);
 }
 
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
                 return (error_message(5));
             get_map(fd, &world);
             printf("The map:\n%s", world.map);
-            clean_up(world, ALL, EXIT_SUCCESS);
+            clean_up(&world, ALL, EXIT_SUCCESS);
         }
     }
 }

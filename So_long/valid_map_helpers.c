@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 #include "so_long.h"
 
-size_t	get_line_len(t_world *world)
+size_t	get_line_len(char *map)
 {
 	size_t	i;
 
 	i = 0;
-	while (world->map[i])
+	while (map[i])
 	{
-		if (world->map[i++] == '\n')
+		if (map[i++] == '\n')
 			break ;
 	}
 	return (i);

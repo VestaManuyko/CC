@@ -57,7 +57,7 @@ static int path_check(t_world *world, char **copy, int y, int x, int *col)
         return (0);
 }
 
-int valid_path(char *map, t_world *world)
+int valid_path(t_world *world)
 {
     char **copy;
     int col;
@@ -65,7 +65,8 @@ int valid_path(char *map, t_world *world)
     col = 0;
     create_grid(world);
     get_player_pos(world);
-    copy = copy_grid(world);
+    copy_grid(world);
+    copy = world->copy;
     if (!path_check(world, copy, world->player_pos.y, 
         world->player_pos.x, &col))
     {
