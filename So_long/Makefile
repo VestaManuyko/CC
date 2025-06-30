@@ -30,24 +30,29 @@ libft/ft_lstadd_front_bonus.c libft/ft_lstsize_bonus.c \
 libft/ft_lstlast_bonus.c libft/ft_lstadd_back_bonus.c \
 libft/ft_lstdelone_bonus.c libft/ft_lstclear_bonus.c \
 libft/ft_putchar_fd.c libft/ft_lstiter_bonus.c libft/ft_lstmap_bonus.c
-OBJ = $(patsubst %.c, %.o, $(LIBFTSRC))
-#project program sources and object files
+#project program sources
 PSRC = main.c free.c valid_map.c valid_map_helpers.c grid_handling.c valid_path.c
-POBJ = $(patsubst %.c, %.o, $(PSRC))
+#object files
+OBJ = $(LIBFTSRC:.c=.o)
+POBJ = $(PSRC:.c=.o)
 
 all : $(NAME)
 
 $(NAME) : $(LIBFT) $(POBJ)
-	$(CC) $(POBJ) $(LIBFT) -o $(NAME)
+	@$(CC) $(POBJ) $(LIBFT) -o $(NAME)
+	@echo "So_long compiled successfully."
+
+%.o : %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT) : $(OBJ)
-	ar -rsc $(LIBFT) $(OBJ)
+	@ar -rsc $(LIBFT) $(OBJ)
 
 clean :
-	rm -f $(OBJ) $(POBJ)
-
+	@rm -f $(OBJ) $(POBJ)
+	@echo "Cleaned."
 fclean : clean
-	rm -f $(LIBFT) 
+	@rm -f $(LIBFT) 
 
 re : fclean $(LIBFT) $(NAME)
 
