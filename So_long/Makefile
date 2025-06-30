@@ -39,7 +39,7 @@ POBJ = $(PSRC:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(LIBFT) $(POBJ)
-	@$(CC) $(POBJ) $(LIBFT) -o $(NAME)
+	@$(CC) -lmlx -lXext -lX11 $(POBJ) $(LIBFT) -o $(NAME)
 	@echo "So_long compiled successfully."
 
 %.o : %.c
