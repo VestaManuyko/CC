@@ -12,7 +12,7 @@
 
 NAME = so_long
 LIBFT = libft.a
-CC = cc -Wall -Wextra -Werror
+CC = cc -Wall -Wextra -Werror -g
 #everything needed for libft.a
 LIBFTSRC = libft/ft_atoi.c libft/ft_bzero.c libft/ft_calloc.c libft/ft_isalnum.c \
 libft/ft_isalpha.c libft/ft_isascii.c libft/ft_isdigit.c libft/ft_isprint.c \

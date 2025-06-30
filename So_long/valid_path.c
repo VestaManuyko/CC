@@ -18,10 +18,10 @@ static void get_player_pos(t_world *world)
     int x;
 
     y = 0;
-    while (y <= world->grid_size.y)
+    while (y < world->grid_size.y)
     {
         x = 0;
-        while (x <= world->grid_size.x)
+        while (x < world->grid_size.x)
         {
             if (world->grid[y][x] == 'P')
             {

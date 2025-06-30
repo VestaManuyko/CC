@@ -64,14 +64,16 @@ static void    init_grid(t_world *world)
 
     y = 0;
     i = 0;
-    while (world->map[i] && y <= world->grid_size.y)
+    while (world->map[i] && y < world->grid_size.y)
     {
         x = 0;
-        while (world->map[i] && x <= world->grid_size.x)
+        while (world->map[i] && x < world->grid_size.x)
         {
             if (world->map[i] != '\n')
+            {
                 world->grid[y][x] = world->map[i];
-            x++;
+                x++;
+            }
             i++;
         }
         y++;
@@ -92,6 +94,7 @@ void    create_grid(t_world *world)
     }
     while (y < world->grid_size.y)
     {
+        world->grid[y] = NULL;
         world->grid[y] = malloc(sizeof(char) * world->grid_size.x);
         if (!world->grid[y])
         {

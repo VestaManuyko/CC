@@ -66,12 +66,13 @@ char	*ft_trim_lines(char *lines)
 	return (trimmed);
 }
 
-char	*ft_eof(char **lines, int bytes_read)
+char	*ft_eof(char **lines, int bytes_read, int *state)
 {
 	char	*line;
 
 	if (bytes_read == 0)
 	{
+		*state = 2;
 		if (*lines && **lines == 0)
 			return (ft_free_lines(lines));
 		line = ft_extract_line(lines);
@@ -87,7 +88,7 @@ char	*ft_eof(char **lines, int bytes_read)
 	return (NULL);
 }
 
-char	*ft_read_line(char **lines, int fd)
+char	*ft_read_line(char **lines, int fd, int *state)
 {
 	int		bytes_read;
 	char	buf[BUFFER_SIZE + 1];
@@ -99,7 +100,7 @@ char	*ft_read_line(char **lines, int fd)
 		bytes_read = read(fd, buf, BUFFER_SIZE);
 		if (bytes_read <= 0)
 		{
-			line = ft_eof(lines, bytes_read);
+			line = ft_eof(lines, bytes_read, state);
 			if (line)
 				return (line);
 			return (NULL);
@@ -114,7 +115,7 @@ char	*ft_read_line(char **lines, int fd)
 	return (*lines);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int *state)
 {
 	static char	*lines;
 	char		*tmp;
@@ -130,7 +131,7 @@ char	*get_next_line(int fd)
 	}
 	if (!ft_check_newline(lines))
 	{
-		lines = ft_read_line(&lines, fd);
+		lines = ft_read_line(&lines, fd, state);
 		if (!lines)
 			return (NULL);
 	}

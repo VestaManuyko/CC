@@ -17,15 +17,17 @@ char    *get_map(int fd, t_world *world)
     char    *line;
     char    *tmp;
     size_t  len;
+    int state;
 
     len = 0;
+    state = 0;
     world->map = ft_strdup("");
     if (!world->map)
     {
         perror("Error\nReason");
-        return (NULL);
+        exit(1);
     }
-    while ((line = get_next_line(fd)) != NULL)
+    while ((line = get_next_line(fd, &state)) != NULL)
     {
         tmp = world->map;
         world->map = ft_strjoin(world->map, line);
@@ -36,6 +38,11 @@ char    *get_map(int fd, t_world *world)
             perror("Error\nReason");
             exit (1);
         }
+    }
+    if (state != 2)
+    {
+        write(2, "Error\nReason: get_next_line failed\n", 36);
+        exit(1);
     }
     valid_map(world);
     return (world->map);
@@ -73,7 +80,8 @@ int main(int argc, char **argv)
             if (fd < 0)
                 return (error_message(5));
             get_map(fd, &world);
-            printf("The map:\n%s", world.map);
+            if (world.map)
+                printf("The map:\n%s", world.map);
             clean_up(&world, ALL, EXIT_SUCCESS);
         }
     }

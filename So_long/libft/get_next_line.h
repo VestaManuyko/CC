@@ -20,7 +20,7 @@
 # include <unistd.h>
 # include "libft.h"
 
-char	*get_next_line(int fd);
+char	*get_next_line(int fd, int *state);
 int		ft_check_newline(char *line);
 void	*ft_free_lines(char **lines);
 

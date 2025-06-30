@@ -19,14 +19,14 @@ static void    free_grid(t_world *world)
     y = 0;
     if (!world->grid)
         return ;
-    while (world->grid[y])
+    while (y < world->grid_size.y)
     {
-        free(world->grid[y]);
+        if (world->grid[y])
+            free(world->grid[y]);
         y++;
     }
     free(world->grid);
     world->grid = NULL;
-    
 }
 
 static void free_copy(t_world *world)
@@ -36,9 +36,10 @@ static void free_copy(t_world *world)
     y = 0;
     if (!world->copy)
         return ;
-    while (world->copy[y])
+    while (y < world->grid_size.y)
     {
-        free(world->copy[y]);
+        if (world->copy[y])
+            free(world->copy[y]);
         y++;
     }
     free(world->copy);
