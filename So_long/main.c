@@ -63,6 +63,21 @@ static int valid_file(char *file)
         return (0);
 }
 
+int key_hook(int keycode, void *param)
+{
+    t_world *world;
+
+    world = param;
+    if (keycode == KEY_ESC)
+        clean_up(world, ALL, EXIT_SUCCESS);
+    return (0);
+}
+
+// int loop_hook(void *param)
+// {
+    
+// }
+
 void    game_loop(int fd, t_world *world)
 {
     int x;
@@ -72,7 +87,10 @@ void    game_loop(int fd, t_world *world)
     world->mlx_ptr = mlx_init();
     x = world->grid_size.x * TILE_SIZE;
     y = world->grid_size.y * TILE_SIZE;
-    world->win = mlx_new_window(world->mlx_ptr, x, y, "So_long");
+    world->win_ptr = mlx_new_window(world->mlx_ptr, x, y, "So_long");
+    mlx_key_hook(world->win_ptr, key_hook, world);
+    //mlx_loop_hook(world->mlx_ptr, loop_hook, world);
+    mlx_loop(world->mlx_ptr);
 }
 
 int main(int argc, char **argv)

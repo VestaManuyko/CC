@@ -28,6 +28,7 @@
 # define NO_EXIT 3
 
 # define TILE_SIZE 32
+# define KEY_ESC 65307
 
 typedef struct s_coord
 {
@@ -44,7 +45,7 @@ typedef struct s_world
     int     collectibles;
     t_coord player_pos;
     void    *mlx_ptr;
-    void    *win;
+    void    *win_ptr;
 }   t_world;
 
 //valid_map.c
