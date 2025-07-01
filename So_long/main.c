@@ -63,6 +63,20 @@ static int valid_file(char *file)
         return (0);
 }
 
+void    get_win_size(t_world *world)
+{
+    world->win_size.x = world->grid_size.x * TILE_SIZE;
+    world->win_size.y = world->grid_size.y * TILE_SIZE;
+}
+
+void    game_loop(int fd, t_world *world)
+{
+    get_map(fd, world);
+    world->mlx_ptr = mlx_init();
+    get_win_size(world);
+    world->win = mlx_new_window(world->mlx_ptr, world->win_size.x, world->win_size.y, "So_long");
+}
+
 int main(int argc, char **argv)
 {
     int fd;
@@ -79,7 +93,7 @@ int main(int argc, char **argv)
             fd = open(argv[1], O_RDONLY);
             if (fd < 0)
                 return (error_message(5));
-            get_map(fd, &world);
+            game_loop(fd, &world);
             if (world.map)
                 printf("The map:\n%s", world.map);
             clean_up(&world, ALL, EXIT_SUCCESS);

@@ -27,6 +27,8 @@
 # define ALL 9
 # define NO_EXIT 3
 
+# define TILE_SIZE 32
+
 typedef struct s_coord
 {
     int y;
@@ -41,6 +43,9 @@ typedef struct s_world
     t_coord grid_size;
     int     collectibles;
     t_coord player_pos;
+    void    *mlx_ptr;
+    void    *win;
+    t_coord win_size;
 }   t_world;
 
 //valid_map.c
