@@ -45,7 +45,6 @@ typedef struct s_world
     t_coord player_pos;
     void    *mlx_ptr;
     void    *win;
-    t_coord win_size;
 }   t_world;
 
 //valid_map.c

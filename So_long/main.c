@@ -63,18 +63,16 @@ static int valid_file(char *file)
         return (0);
 }
 
-void    get_win_size(t_world *world)
-{
-    world->win_size.x = world->grid_size.x * TILE_SIZE;
-    world->win_size.y = world->grid_size.y * TILE_SIZE;
-}
-
 void    game_loop(int fd, t_world *world)
 {
+    int x;
+    int y;
+
     get_map(fd, world);
     world->mlx_ptr = mlx_init();
-    get_win_size(world);
-    world->win = mlx_new_window(world->mlx_ptr, world->win_size.x, world->win_size.y, "So_long");
+    x = world->grid_size.x * TILE_SIZE;
+    y = world->grid_size.y * TILE_SIZE;
+    world->win = mlx_new_window(world->mlx_ptr, x, y, "So_long");
 }
 
 int main(int argc, char **argv)
