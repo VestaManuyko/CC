@@ -32,7 +32,7 @@ libft/ft_lstdelone_bonus.c libft/ft_lstclear_bonus.c \
 libft/ft_putchar_fd.c libft/ft_lstiter_bonus.c libft/ft_lstmap_bonus.c
 #project program sources
 PSRC = main.c free.c valid_map.c valid_map_helpers.c grid_handling.c valid_path.c \
-image_handling.c hooks.c
+image_handling.c hooks.c draw.c
 #object files
 OBJ = $(LIBFTSRC:.c=.o)
 POBJ = $(PSRC:.c=.o)

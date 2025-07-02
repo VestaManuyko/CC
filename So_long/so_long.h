@@ -27,7 +27,7 @@
 # define ALL 9
 # define NO_EXIT 3
 
-# define TILE_SIZE 32
+# define TILE_SIZE 16
 # define KEY_ESC 65307
 
 typedef struct s_coord
@@ -36,6 +36,21 @@ typedef struct s_coord
     int x;
 }   t_coord;
 
+typedef struct s_img
+{
+    void    *col;
+    void    *wall;
+    void    *exit;
+    void    *background;
+}   t_img;
+
+typedef struct s_player
+{
+    t_coord pos;
+    int cur_frame;
+    void   *frames[2];
+}   t_player;
+
 typedef struct s_world
 {
     char    **grid;
@@ -43,9 +58,10 @@ typedef struct s_world
     char    **copy;
     t_coord grid_size;
     int     collectibles;
-    t_coord player_pos;
+    t_player player;
     void    *mlx_ptr;
     void    *win_ptr;
+    t_img   img_ptr;
 }   t_world;
 
 //valid_map.c
@@ -66,5 +82,9 @@ void clean_up(t_world *world, int clean, int exit);
 //hooks.c
 int key_hook(int keycode, void *param);
 int exit_hook(void *param);
+//image_handling.c
+void    image_init(t_world *world);
+//draw.c
+void    draw_world(t_world *world);
 
 #endif

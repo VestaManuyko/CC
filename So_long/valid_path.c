@@ -25,8 +25,8 @@ static void get_player_pos(t_world *world)
         {
             if (world->grid[y][x] == 'P')
             {
-                world->player_pos.x = x;
-                world->player_pos.y = y;
+                world->player.pos.x = x;
+                world->player.pos.y = y;
                 return ;
             }
             x++;
@@ -67,8 +67,8 @@ int valid_path(t_world *world)
     get_player_pos(world);
     copy_grid(world);
     copy = world->copy;
-    if (!path_check(world, copy, world->player_pos.y, 
-        world->player_pos.x, &col))
+    if (!path_check(world, copy, world->player.pos.y, 
+        world->player.pos.x, &col))
     {
         write(2, "Error\nNo valid path in the map\n", 32);
         return (0);
