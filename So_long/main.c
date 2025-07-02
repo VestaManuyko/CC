@@ -85,9 +85,19 @@ void    game_loop(int fd, t_world *world)
 
     get_map(fd, world);
     world->mlx_ptr = mlx_init();
+    if (!world->mlx_ptr)
+    {
+        perror("Error\nMlx init failure");
+        clean_up(world, ALL, EXIT_FAILURE);
+    }
     x = world->grid_size.x * TILE_SIZE;
     y = world->grid_size.y * TILE_SIZE;
     world->win_ptr = mlx_new_window(world->mlx_ptr, x, y, "So_long");
+    if (!world->win_ptr)
+    {
+        perror("Error\nMlx window creation failure");
+        clean_up(world, ALL, EXIT_FAILURE);
+    }
     mlx_key_hook(world->win_ptr, key_hook, world);
     //mlx_loop_hook(world->mlx_ptr, loop_hook, world);
     mlx_loop(world->mlx_ptr);
