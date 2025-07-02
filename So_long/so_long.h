@@ -65,6 +65,8 @@ typedef struct s_player
     t_frame frame;
     t_coord pos;
     void   *frames[8];
+    int col_col;
+    int allow_exit;
 }   t_player;
 
 typedef struct s_world
@@ -105,4 +107,8 @@ void    world_init(t_world *world);
 int    draw_world(t_world *world);
 //move.c
 void    move_player(t_world *world, int keycode);
+//move_helpers.c
+void    set_col(t_world *world);
+void    check_exit(t_world *world);
+
 #endif

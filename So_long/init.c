@@ -72,6 +72,8 @@ void    world_init(t_world *world)
     int y;
 
     world->steps = 0;
+    world->player.col_col = 0;
+    world->player.allow_exit = 0;
     world->img_ptr.wall = mlx_xpm_file_to_image(world->mlx_ptr, 
         "textures/other/wall.xpm", &x, &y);
     if (!world->img_ptr.wall)

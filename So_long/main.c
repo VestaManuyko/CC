@@ -89,9 +89,7 @@ void    game_loop(int fd, t_world *world)
     mlx_hook(world->win_ptr, 17, 0, exit_hook, world);
     mlx_loop_hook(world->mlx_ptr, draw_world, world);
     mlx_loop(world->mlx_ptr);
-}
-    //inside update_world update until finished game or exit
-    
+}  
 
 int main(int argc, char **argv)
 {
