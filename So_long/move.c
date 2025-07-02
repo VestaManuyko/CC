@@ -27,6 +27,7 @@ void move_up(t_world *world)
         world->grid[y - 1][x] = 'P';
         world->grid[y][x] = '0';
         world->steps++;
+        world->player.pos.y--;
     }
     if (world->grid[y - 1][x] == 'E')
         check_exit(world);
@@ -35,6 +36,7 @@ void move_up(t_world *world)
         world->grid[y - 1][x] = 'P';
         world->grid[y][x] = '0';
         world->steps++;
+        world->player.pos.y--;
     }
 }
 
@@ -53,14 +55,16 @@ void move_left(t_world *world)
         world->grid[y][x - 1] = 'P';
         world->grid[y][x] = '0';
         world->steps++;
+        world->player.pos.x--;
     }
     if (world->grid[y][x - 1] == 'E')
         check_exit(world);
     if (world->grid[y][x - 1] == '0')
     {
-        world->grid[y - 1][x] = 'P';
+        world->grid[y][x - 1] = 'P';
         world->grid[y][x] = '0';
         world->steps++;
+        world->player.pos.x--;
     }
 }
 
@@ -79,6 +83,7 @@ void move_right(t_world *world)
         world->grid[y][x + 1] = 'P';
         world->grid[y][x] = '0';
         world->steps++;
+        world->player.pos.x++;
     }
     if (world->grid[y][x + 1] == 'E')
         check_exit(world);
@@ -87,6 +92,7 @@ void move_right(t_world *world)
         world->grid[y][x + 1] = 'P';
         world->grid[y][x] = '0';
         world->steps++;
+        world->player.pos.x++;
     }
 }
 
@@ -105,6 +111,7 @@ void move_down(t_world *world)
         world->grid[y + 1][x] = 'P';
         world->grid[y][x] = '0';
         world->steps++;
+        world->player.pos.y++;
     }
     if (world->grid[y + 1][x] == 'E')
         check_exit(world);
@@ -113,6 +120,7 @@ void move_down(t_world *world)
         world->grid[y + 1][x] = 'P';
         world->grid[y][x] = '0';
         world->steps++;
+        world->player.pos.y++;
     }
 }
 
@@ -126,4 +134,5 @@ void    move_player(t_world *world, int keycode)
         move_down(world);
     if (keycode == KEY_D)
         move_right(world);
+    ft_printf("\rNumber of steps made: %u", world->steps);
 }

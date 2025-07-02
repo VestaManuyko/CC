@@ -39,6 +39,5 @@ int    draw_world(t_world *world)
         }
         y++;
     }
-    ft_printf("Number of steps made: %u\n", world->steps);
     return (0);
 }
