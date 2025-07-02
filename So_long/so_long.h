@@ -44,11 +44,23 @@ typedef struct s_img
     void    *background;
 }   t_img;
 
+typedef enum    s_frame
+{
+    STAND,
+    MOVE_RIGHT,
+    STAND_RIGHT,
+    MOVE_LEFT,
+    STAND_LEFT,
+    MOVE_UP,
+    STAND_BACK,
+    MOVE_DOWN
+}   t_frame;
+
 typedef struct s_player
 {
+    t_frame frame;
     t_coord pos;
-    int cur_frame;
-    void   *frames[2];
+    void   *frames[8];
 }   t_player;
 
 typedef struct s_world

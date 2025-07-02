@@ -18,6 +18,53 @@ static void    image_error(t_world *world)
     clean_up(world, ALL, EXIT_FAILURE);
 }
 
+void    player_init2(t_world *world)
+{
+    int x;
+    int y;
+
+    world->player.frames[4] = mlx_xpm_file_to_image(world->mlx_ptr, 
+        "textures/player/stand_right.xpm", &x, &y);
+    if (!world->player.frames[4])
+        image_error(world);
+    world->player.frames[5] = mlx_xpm_file_to_image(world->mlx_ptr, 
+        "textures/player/move_up.xpm", &x, &y);
+    if (!world->player.frames[5])
+        image_error(world);
+    world->player.frames[6] = mlx_xpm_file_to_image(world->mlx_ptr, 
+        "textures/player/stand_back.xpm", &x, &y);
+    if (!world->player.frames[6])
+        image_error(world);
+    world->player.frames[7] = mlx_xpm_file_to_image(world->mlx_ptr, 
+        "textures/player/move_down.xpm", &x, &y);
+    if (!world->player.frames[7])
+        image_error(world);
+}
+
+void    player_init(t_world *world)
+{
+    int x;
+    int y;
+    
+    world->player.frames[0] = mlx_xpm_file_to_image(world->mlx_ptr, 
+        "textures/player/stand.xpm", &x, &y);
+    if (!world->player.frames[0])
+        image_error(world);
+    world->player.frames[1] = mlx_xpm_file_to_image(world->mlx_ptr, 
+        "textures/player/move_right.xpm", &x, &y);
+    if (!world->player.frames[1])
+        image_error(world);
+    world->player.frames[2] = mlx_xpm_file_to_image(world->mlx_ptr, 
+        "textures/player/stand_right.xpm", &x, &y);
+    if (!world->player.frames[2])
+        image_error(world);
+    world->player.frames[3] = mlx_xpm_file_to_image(world->mlx_ptr, 
+        "textures/player/move_left.xpm", &x, &y);
+    if (!world->player.frames[3])
+        image_error(world);
+    player_init2(world);
+}
+
 void    image_init(t_world *world)
 {
     int x;
@@ -35,4 +82,5 @@ void    image_init(t_world *world)
         "textures/other/crystal.xpm", &x, &y);
     if (!world->img_ptr.exit)
         image_error(world);
+    player_init(world);
 }
