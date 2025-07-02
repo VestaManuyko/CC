@@ -32,6 +32,9 @@ void    draw_world(t_world *world)
             if (world->grid[y][x] == 'E')
                 mlx_put_image_to_window(world->mlx_ptr, world->win_ptr,
                     world->img_ptr.exit, x * TILE_SIZE, y * TILE_SIZE);
+            if (world->grid[y][x] == 'P')
+                mlx_put_image_to_window(world->mlx_ptr, world->win_ptr,
+                    world->player.frames[0], x * TILE_SIZE, y * TILE_SIZE);
             x++;
         }
         y++;

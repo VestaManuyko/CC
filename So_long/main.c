@@ -87,6 +87,7 @@ void    game_loop(int fd, t_world *world)
     mlx_hook(world->win_ptr, 17, 0, exit_hook, world);
     image_init(world);
     draw_world(world);
+    //update_world(world);
     mlx_loop(world->mlx_ptr);
 }
 
