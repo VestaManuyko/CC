@@ -29,6 +29,10 @@
 
 # define TILE_SIZE 16
 # define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
 
 typedef struct s_coord
 {
@@ -47,13 +51,13 @@ typedef struct s_img
 typedef enum    s_frame
 {
     STAND,
+    MOVE_DOWN,
     MOVE_RIGHT,
     STAND_RIGHT,
     MOVE_LEFT,
     STAND_LEFT,
     MOVE_UP,
-    STAND_BACK,
-    MOVE_DOWN
+    STAND_BACK
 }   t_frame;
 
 typedef struct s_player
@@ -74,6 +78,7 @@ typedef struct s_world
     void    *mlx_ptr;
     void    *win_ptr;
     t_img   img_ptr;
+    unsigned int  steps;
 }   t_world;
 
 //valid_map.c
@@ -95,8 +100,9 @@ void clean_up(t_world *world, int clean, int exit);
 int key_hook(int keycode, void *param);
 int exit_hook(void *param);
 //image_handling.c
-void    image_init(t_world *world);
+void    world_init(t_world *world);
 //draw.c
-void    draw_world(t_world *world);
-
+int    draw_world(t_world *world);
+//move.c
+void    move_player(t_world *world, int keycode);
 #endif

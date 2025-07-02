@@ -12,6 +12,12 @@
 
 #include "so_long.h"
 
+static int is_move_key(int keycode)
+{
+    return (keycode == KEY_W || keycode == KEY_A ||
+            keycode == KEY_S || keycode == KEY_D);
+}
+
 int key_hook(int keycode, void *param)
 {
     t_world *world;
@@ -19,6 +25,8 @@ int key_hook(int keycode, void *param)
     world = param;
     if (keycode == KEY_ESC)
         clean_up(world, ALL, EXIT_SUCCESS);
+    if (is_move_key(keycode))
+        move_player(world, keycode);
     return (0);
 }
 

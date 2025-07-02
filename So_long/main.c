@@ -83,13 +83,15 @@ void    game_loop(int fd, t_world *world)
         perror("Error\nMlx window creation failure");
         clean_up(world, ALL, EXIT_FAILURE);
     }
+    world_init(world);
+    draw_world(world);
     mlx_key_hook(world->win_ptr, key_hook, world);
     mlx_hook(world->win_ptr, 17, 0, exit_hook, world);
-    image_init(world);
-    draw_world(world);
-    //update_world(world);
+    mlx_loop_hook(world->mlx_ptr, draw_world, world);
     mlx_loop(world->mlx_ptr);
 }
+    //inside update_world update until finished game or exit
+    
 
 int main(int argc, char **argv)
 {

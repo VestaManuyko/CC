@@ -70,5 +70,8 @@ void clean_up(t_world *world, int clean, int do_exit)
     if (do_exit == EXIT_FAILURE)
         exit (1);
     else if (do_exit == EXIT_SUCCESS)
+    {
+        ft_printf("Number of steps made: %u\n", world->steps);
         exit (0);
+    }
 }

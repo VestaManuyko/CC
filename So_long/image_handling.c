@@ -24,19 +24,19 @@ void    player_init2(t_world *world)
     int y;
 
     world->player.frames[4] = mlx_xpm_file_to_image(world->mlx_ptr, 
-        "textures/player/stand_right.xpm", &x, &y);
+        "textures/player/move_left.xpm", &x, &y);
     if (!world->player.frames[4])
         image_error(world);
     world->player.frames[5] = mlx_xpm_file_to_image(world->mlx_ptr, 
-        "textures/player/move_up.xpm", &x, &y);
+        "textures/player/stand_right.xpm", &x, &y);
     if (!world->player.frames[5])
         image_error(world);
     world->player.frames[6] = mlx_xpm_file_to_image(world->mlx_ptr, 
-        "textures/player/stand_back.xpm", &x, &y);
+        "textures/player/move_up.xpm", &x, &y);
     if (!world->player.frames[6])
         image_error(world);
     world->player.frames[7] = mlx_xpm_file_to_image(world->mlx_ptr, 
-        "textures/player/move_down.xpm", &x, &y);
+        "textures/player/stand_back.xpm", &x, &y);
     if (!world->player.frames[7])
         image_error(world);
 }
@@ -46,30 +46,32 @@ void    player_init(t_world *world)
     int x;
     int y;
     
+    world->player.frame = 0;
     world->player.frames[0] = mlx_xpm_file_to_image(world->mlx_ptr, 
         "textures/player/stand.xpm", &x, &y);
     if (!world->player.frames[0])
         image_error(world);
     world->player.frames[1] = mlx_xpm_file_to_image(world->mlx_ptr, 
-        "textures/player/move_right.xpm", &x, &y);
+        "textures/player/move_down.xpm", &x, &y);
     if (!world->player.frames[1])
         image_error(world);
     world->player.frames[2] = mlx_xpm_file_to_image(world->mlx_ptr, 
-        "textures/player/stand_right.xpm", &x, &y);
+        "textures/player/move_right.xpm", &x, &y);
     if (!world->player.frames[2])
         image_error(world);
     world->player.frames[3] = mlx_xpm_file_to_image(world->mlx_ptr, 
-        "textures/player/move_left.xpm", &x, &y);
+        "textures/player/stand_right.xpm", &x, &y);
     if (!world->player.frames[3])
         image_error(world);
     player_init2(world);
 }
 
-void    image_init(t_world *world)
+void    world_init(t_world *world)
 {
     int x;
     int y;
 
+    world->steps = 0;
     world->img_ptr.wall = mlx_xpm_file_to_image(world->mlx_ptr, 
         "textures/other/wall.xpm", &x, &y);
     if (!world->img_ptr.wall)

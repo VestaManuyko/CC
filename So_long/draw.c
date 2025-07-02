@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void    draw_world(t_world *world)
+int    draw_world(t_world *world)
 {
     int y;
     int x;
@@ -34,9 +34,10 @@ void    draw_world(t_world *world)
                     world->img_ptr.exit, x * TILE_SIZE, y * TILE_SIZE);
             if (world->grid[y][x] == 'P')
                 mlx_put_image_to_window(world->mlx_ptr, world->win_ptr,
-                    world->player.frames[0], x * TILE_SIZE, y * TILE_SIZE);
+                    world->player.frames[world->player.frame], x * TILE_SIZE, y * TILE_SIZE);
             x++;
         }
         y++;
     }
+    return (0);
 }
