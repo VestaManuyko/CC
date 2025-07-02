@@ -63,21 +63,6 @@ static int valid_file(char *file)
         return (0);
 }
 
-int key_hook(int keycode, void *param)
-{
-    t_world *world;
-
-    world = param;
-    if (keycode == KEY_ESC)
-        clean_up(world, ALL, EXIT_SUCCESS);
-    return (0);
-}
-
-// int loop_hook(void *param)
-// {
-    
-// }
-
 void    game_loop(int fd, t_world *world)
 {
     int x;
@@ -98,8 +83,9 @@ void    game_loop(int fd, t_world *world)
         perror("Error\nMlx window creation failure");
         clean_up(world, ALL, EXIT_FAILURE);
     }
+    //FIX call image init etc.
     mlx_key_hook(world->win_ptr, key_hook, world);
-    //mlx_loop_hook(world->mlx_ptr, loop_hook, world);
+    mlx_hook(world->win_ptr, 17, 0, exit_hook, world);
     mlx_loop(world->mlx_ptr);
 }
 
@@ -120,9 +106,6 @@ int main(int argc, char **argv)
             if (fd < 0)
                 return (error_message(5));
             game_loop(fd, &world);
-            if (world.map)
-                printf("The map:\n%s", world.map);
-            clean_up(&world, ALL, EXIT_SUCCESS);
         }
     }
 }
