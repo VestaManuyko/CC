@@ -46,6 +46,24 @@ static void	free_copy(t_world *world)
 	world->copy = NULL;
 }
 
+static void	clean_windows(t_world *world)
+{
+	if (world->img_ptr.background)
+		mlx_destroy_image(world->mlx_ptr, world->img_ptr.background);
+	if (world->img_ptr.wall)
+		mlx_destroy_image(world->mlx_ptr, world->img_ptr.wall);
+	if (world->img_ptr.player)
+		mlx_destroy_image(world->mlx_ptr, world->img_ptr.player);
+	if (world->img_ptr.exit)
+		mlx_destroy_image(world->mlx_ptr, world->img_ptr.exit);
+	if (world->img_ptr.col)
+		mlx_destroy_image(world->mlx_ptr, world->img_ptr.col);
+	if (world->win_ptr)
+		mlx_destroy_window(world->mlx_ptr, world->win_ptr);
+	mlx_destroy_display(world->mlx_ptr);
+	free(world->mlx_ptr);
+}
+
 //check what needs to be freed based on enum passed as parameters
 //takes pointers from world struct and calls needed helpers
 void	clean_up(t_world *world, int clean, int do_exit)
@@ -67,6 +85,8 @@ void	clean_up(t_world *world, int clean, int do_exit)
 		world->map = NULL;
 		free_grid(world);
 		free_copy(world);
+		if (world->mlx_ptr)
+			clean_windows(world);
 	}
 	if (do_exit == EXIT_FAILURE)
 		exit (1);

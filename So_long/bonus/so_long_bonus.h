@@ -58,7 +58,6 @@ typedef struct s_img
 	void	*wall;
 	void	*exit;
 	void	*background;
-	void	*player;
 }	t_img;
 
 typedef struct s_player
