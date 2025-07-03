@@ -42,6 +42,6 @@ int	draw_world(t_world *world)
 		}
 		y++;
 	}
+	mlx_string_put(world->mlx_ptr, world->win_ptr, 2, (world->grid_size.y +3), 0x00F0FF00, world->moves);
 	return (0);
 }
-//FIX add for bonus mlx_string_put(world->mlx_ptr, world->win_ptr, 5, 5, 0x00FFFFFF, "Number of steps!");

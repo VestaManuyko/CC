@@ -24,3 +24,13 @@ void	check_exit(t_world *world)
 	if (world->player.allow_exit == 1)
 		clean_up(world, ALL, EXIT_SUCCESS);
 }
+
+void	moves_update(t_world *world)
+{
+	if (world->moves)
+	{
+		free(world->moves);
+		world->moves = NULL;
+	}
+	world->moves = ft_itoa(world->player.steps);
+}

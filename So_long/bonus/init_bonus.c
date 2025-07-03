@@ -71,7 +71,9 @@ void	world_init(t_world *world)
 	int	x;
 	int	y;
 
-	world->steps = 0;
+	world->player.steps = 0;
+	world->moves = NULL;
+	moves_update(world);
 	world->player.col_col = 0;
 	world->player.allow_exit = 0;
 	world->img_ptr.background = mlx_xpm_file_to_image(world->mlx_ptr,

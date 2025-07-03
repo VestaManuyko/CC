@@ -67,6 +67,7 @@ typedef struct s_player
 	void	*frames[8];
 	int		col_col;
 	int		allow_exit;
+	int		steps;
 }	t_player;
 
 typedef struct s_world
@@ -80,7 +81,7 @@ typedef struct s_world
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_img		img_ptr;
-	int			steps;
+	char		*moves;
 }	t_world;
 
 //valid_map.c
@@ -110,5 +111,6 @@ void	move_player(t_world *world, int keycode);
 //move_helpers.c
 void	set_col(t_world *world);
 void	check_exit(t_world *world);
+void	moves_update(t_world *world);
 
 #endif

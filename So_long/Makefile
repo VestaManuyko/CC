@@ -37,7 +37,7 @@ valid_path.c init.c hooks.c draw.c move.c move_helpers.c
 BSRC = bonus/main_bonus.c bonus/free_bonus.c bonus/valid_map_bonus.c \
 bonus/valid_map_helpers_bonus.c bonus/grid_handling_bonus.c \
 bonus/valid_path_bonus.c bonus/init_bonus.c bonus/hooks_bonus.c \
-bonus/draw_bonus.c bonus/move_bonus.c bonus/move_helpers_bonus.c
+bonus/draw_bonus.c bonus/move_bonus.c bonus/move_helpers_bonus.c \
 #object files
 OBJ = $(LIBFTSRC:.c=.o)
 POBJ = $(PSRC:.c=.o)
@@ -67,6 +67,6 @@ bonus : $(BNS_NAME)
 
 $(BNS_NAME) : $(LIBFT) $(BOBJ)
 	@$(CC) -lmlx -lXext -lX11 $(BOBJ) $(LIBFT) -o $(BNS_NAME)
-	@echo "So_long bonus copiled successfully."
+	@echo "So_long bonus compiled successfully."
 
 .PHONY : all clean fclean re bonus
