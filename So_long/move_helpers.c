@@ -12,14 +12,15 @@
 
 #include "so_long.h"
 
-void    set_col(t_world *world)
+void	set_col(t_world *world)
 {
-    world->player.col_col++;
-    if (world->player.col_col == world->collectibles)
-        world->player.allow_exit = 1;
+	world->player.col_col++;
+	if (world->player.col_col == world->collectibles)
+		world->player.allow_exit = 1;
 }
-void    check_exit(t_world *world)
+
+void	check_exit(t_world *world)
 {
-    if (world->player.allow_exit == 1)
-        clean_up(world, ALL, EXIT_SUCCESS);
+	if (world->player.allow_exit == 1)
+		clean_up(world, ALL, EXIT_SUCCESS);
 }

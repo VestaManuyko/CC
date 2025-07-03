@@ -34,81 +34,82 @@
 # define KEY_S 115
 # define KEY_D 100
 
+typedef enum s_frame
+{
+	STAND,
+	MOVE_DOWN,
+	MOVE_RIGHT,
+	STAND_RIGHT,
+	MOVE_LEFT,
+	STAND_LEFT,
+	MOVE_UP,
+	STAND_BACK
+}	t_frame;
+
 typedef struct s_coord
 {
-    int y;
-    int x;
-}   t_coord;
+	int	y;
+	int	x;
+}	t_coord;
 
 typedef struct s_img
 {
-    void    *col;
-    void    *wall;
-    void    *exit;
-    void    *background;
-}   t_img;
-
-typedef enum    s_frame
-{
-    STAND,
-    MOVE_DOWN,
-    MOVE_RIGHT,
-    STAND_RIGHT,
-    MOVE_LEFT,
-    STAND_LEFT,
-    MOVE_UP,
-    STAND_BACK
-}   t_frame;
+	void	*col;
+	void	*wall;
+	void	*exit;
+	void	*background;
+	void	*player;
+}	t_img;
 
 typedef struct s_player
 {
-    t_frame frame;
-    t_coord pos;
-    void   *frames[8];
-    int col_col;
-    int allow_exit;
-}   t_player;
+	t_frame	frame;
+	t_coord	pos;
+	void	*frames[8];
+	int		col_col;
+	int		allow_exit;
+}	t_player;
 
 typedef struct s_world
 {
-    char    **grid;
-    char    *map;
-    char    **copy;
-    t_coord grid_size;
-    int     collectibles;
-    t_player player;
-    void    *mlx_ptr;
-    void    *win_ptr;
-    t_img   img_ptr;
-    unsigned int  steps;
-}   t_world;
+	char		**grid;
+	char		*map;
+	char		**copy;
+	t_coord		grid_size;
+	int			collectibles;
+	t_player	player;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_img		img_ptr;
+	int			steps;
+}	t_world;
 
 //valid_map.c
-void valid_map(t_world *world);
+void	valid_map(t_world *world);
 //valid_map_helpers.c
 size_t	get_line_len(char *map);
-int get_total_rows(t_world *world);
-int error_message(int n);
-size_t valid_edge_row(t_world *world, size_t i);
-size_t  valid_mid_row(t_world *world, size_t i);
+int		get_total_rows(t_world *world);
+int		error_message(int n);
+size_t	valid_edge_row(t_world *world, size_t i);
+size_t	valid_mid_row(t_world *world, size_t i);
 //valid_path.c
-int valid_path(t_world *world);
+int		valid_path(t_world *world);
 //grid_handling.c
-void    create_grid(t_world *world);
-void    copy_grid(t_world *world);
+void	create_grid(t_world *world);
+void	copy_grid(t_world *world);
 //free.c
-void clean_up(t_world *world, int clean, int exit);
+void	clean_up(t_world *world, int clean, int exit);
 //hooks.c
-int key_hook(int keycode, void *param);
-int exit_hook(void *param);
-//draw_bonus.c
-int    draw_world(t_world *world);
+int		key_hook(int keycode, void *param);
+int		exit_hook(void *param);
+//init.c
+void	world_init(t_world *world);
+//draw.c
+int		draw_world(t_world *world);
 //move.c
-void    move_player(t_world *world, int keycode);
+void	move_player(t_world *world, int keycode);
 //move_helpers.c
-void    set_col(t_world *world);
-void    check_exit(t_world *world);
-//init_bonus.c
-void    world_init(t_world *world);
+void	set_col(t_world *world);
+void	check_exit(t_world *world);
 
 #endif
