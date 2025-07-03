@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmanuyko <vmanuyko@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 19:54:21 by vmanuyko          #+#    #+#             */
-/*   Updated: 2025/06/16 19:54:25 by vmanuyko         ###   ########.fr       */
+/*   Created: 2025/07/03 15:11:17 by vmanuyko          #+#    #+#             */
+/*   Updated: 2025/07/03 15:11:18 by vmanuyko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "mlx.h"
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -46,12 +46,25 @@ typedef struct s_img
     void    *wall;
     void    *exit;
     void    *background;
-    void    *player;
 }   t_img;
+
+typedef enum    s_frame
+{
+    STAND,
+    MOVE_DOWN,
+    MOVE_RIGHT,
+    STAND_RIGHT,
+    MOVE_LEFT,
+    STAND_LEFT,
+    MOVE_UP,
+    STAND_BACK
+}   t_frame;
 
 typedef struct s_player
 {
+    t_frame frame;
     t_coord pos;
+    void   *frames[8];
     int col_col;
     int allow_exit;
 }   t_player;
@@ -88,14 +101,14 @@ void clean_up(t_world *world, int clean, int exit);
 //hooks.c
 int key_hook(int keycode, void *param);
 int exit_hook(void *param);
-//init.c
-void    world_init(t_world *world);
-//draw.c
+//draw_bonus.c
 int    draw_world(t_world *world);
 //move.c
 void    move_player(t_world *world, int keycode);
 //move_helpers.c
 void    set_col(t_world *world);
 void    check_exit(t_world *world);
+//init_bonus.c
+void    world_init(t_world *world);
 
 #endif

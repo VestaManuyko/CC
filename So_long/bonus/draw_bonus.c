@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   draw_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmanuyko <vmanuyko@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/02 14:38:39 by vmanuyko          #+#    #+#             */
-/*   Updated: 2025/07/02 14:38:40 by vmanuyko         ###   ########.fr       */
+/*   Created: 2025/07/03 15:18:18 by vmanuyko          #+#    #+#             */
+/*   Updated: 2025/07/03 15:18:19 by vmanuyko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int    draw_world(t_world *world)
 {
@@ -37,10 +37,11 @@ int    draw_world(t_world *world)
                     world->img_ptr.exit, x * TILE_SIZE, y * TILE_SIZE);
             if (world->grid[y][x] == 'P')
                 mlx_put_image_to_window(world->mlx_ptr, world->win_ptr,
-                    world->img_ptr.player, x * TILE_SIZE, y * TILE_SIZE);
+                    world->player.frames[world->player.frame], x * TILE_SIZE, y * TILE_SIZE);
             x++;
         }
         y++;
     }
+    //FIX add for bonus mlx_string_put(world->mlx_ptr, world->win_ptr, 5, 5, 0x00FFFFFF, "Number of steps!");
     return (0);
 }
