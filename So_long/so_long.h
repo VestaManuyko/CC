@@ -70,8 +70,6 @@ typedef struct s_world
 	int			steps;
 }	t_world;
 
-//main.c
-void	exit_perror(const char *s);
 //valid_map.c
 void	valid_map(t_world *world);
 //valid_map_helpers.c
@@ -99,5 +97,9 @@ void	move_player(t_world *world, int keycode);
 //move_helpers.c
 void	set_col(t_world *world);
 void	check_exit(t_world *world);
+//line.c
+int		check_line(char *line);
+void	exit_perror(const char *s);
+void	error_exit(int n);
 
 #endif

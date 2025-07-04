@@ -17,27 +17,25 @@ void	get_map2(int fd, t_world *world)
 	int		state;
 	char	*tmp;
 	char	*line;
+	int		line_check;
 
 	state = 0;
 	line = get_next_line(fd, &state);
 	while (line != NULL)
 	{
 		tmp = world->map;
+		line_check = check_line(line);
 		world->map = ft_strjoin(world->map, line);
 		free(line);
 		free(tmp);
 		if (!world->map)
-		{
-			perror("Error\nReason");
-			exit (1);
-		}
+			exit_perror("Error\nReason");
+		if (!line_check)
+			error_exit(2);
 		line = get_next_line(fd, &state);
 	}
 	if (state != 2)
-	{
-		write(2, "Error\nReason: get_next_line failed\n", 36);
-		exit(1);
-	}
+		error_exit(1);
 }
 
 void	get_map(int fd, t_world *world)

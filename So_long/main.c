@@ -12,38 +12,38 @@
 
 #include "so_long.h"
 
-void	exit_perror(const char *s)
-{
-	perror(s);
-	exit(EXIT_FAILURE);
-}
-
-static void	get_map(int fd, t_world *world)
+static void	get_map2(int fd, t_world *world)
 {
 	char	*line;
 	char	*tmp;
 	int		state;
+	int		line_check;
 
 	state = 0;
-	world->map = ft_strdup("");
-	if (!world->map)
-		exit_perror("Error\nReason");
 	line = get_next_line(fd, &state);
 	while (line != NULL)
 	{
 		tmp = world->map;
+		line_check = check_line(line);
 		world->map = ft_strjoin(world->map, line);
 		free(line);
 		free(tmp);
 		if (!world->map)
 			exit_perror("Error\nReason");
+		if (!line_check)
+			error_exit(2);
 		line = get_next_line(fd, &state);
 	}
 	if (state != 2)
-	{
-		write(2, "Error\nReason: get_next_line failed\n", 36);
-		exit(1);
-	}
+		error_exit(1);
+}
+
+static void	get_map(int fd, t_world *world)
+{
+	world->map = ft_strdup("");
+	get_map2(fd, world);
+	if (!world->map)
+		exit_perror("Error\nReason");
 	valid_map(world);
 }
 
