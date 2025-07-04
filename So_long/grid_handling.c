@@ -27,10 +27,7 @@ static char	**create_copy(t_world *world)
 	{
 		world->copy[y] = malloc(sizeof(char) * world->grid_size.x);
 		if (!world->copy[y])
-		{
-			perror("Error\nCreation of copy_grid failed");
-			exit(1);
-		}
+			exit_perror("Error\nCreation of copy_grid failed");
 		y++;
 	}
 	return (world->copy);

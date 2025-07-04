@@ -76,6 +76,7 @@ static void	free_moves(t_world *world)
 		free(world->moves);
 	world->moves = NULL;
 }
+
 //check what needs to be freed based on enum passed as parameters
 //takes pointers from world struct and calls needed helpers
 void	clean_up(t_world *world, int clean, int do_exit)

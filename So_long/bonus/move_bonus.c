@@ -12,7 +12,7 @@
 
 #include "so_long_bonus.h"
 
-void	move_up(t_world *world)
+static void	move_up(t_world *world)
 {
 	int	x;
 	int	y;
@@ -40,7 +40,7 @@ void	move_up(t_world *world)
 	}
 }
 
-void	move_left(t_world *world)
+static void	move_left(t_world *world)
 {
 	int	x;
 	int	y;
@@ -127,12 +127,19 @@ void	move_down(t_world *world)
 void	move_player(t_world *world, int keycode)
 {
 	if (keycode == KEY_W)
+	{
+		draw_animation(world, MOVE_UP);
+		remove_old_pos(world);
 		move_up(world);
+		world->player.frame = STAND_BACK;
+	}
 	if (keycode == KEY_A)
+	{
+		draw_animation(world, MOVE_LEFT);
+		remove_old_pos(world);
 		move_left(world);
-	if (keycode == KEY_S)
-		move_down(world);
-	if (keycode == KEY_D)
-		move_right(world);
+		world->player.frame = STAND_LEFT;
+	}
+	move_player2(world, keycode);
 	moves_update(world);
 }

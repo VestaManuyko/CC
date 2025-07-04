@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
-//gets players start position
-static void	get_player_pos(t_world *world)
+//gets players position
+void	get_player_pos(t_world *world)
 {
 	int	y;
 	int	x;

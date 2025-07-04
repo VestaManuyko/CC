@@ -34,3 +34,29 @@ void	moves_update(t_world *world)
 	}
 	world->moves = ft_itoa(world->player.steps);
 }
+
+void	remove_old_pos(t_world *world)
+{
+	mlx_put_image_to_window(world->mlx_ptr, world->win_ptr,
+		world->img_ptr.background,
+		world->player.pos.x * TILE_SIZE,
+		world->player.pos.y * TILE_SIZE);
+}
+
+void	move_player2(t_world *world, int keycode)
+{
+	if (keycode == KEY_S)
+	{
+		draw_animation(world, MOVE_DOWN);
+		remove_old_pos(world);
+		move_down(world);
+		world->player.frame = STAND;
+	}
+	if (keycode == KEY_D)
+	{
+		draw_animation(world, MOVE_RIGHT);
+		remove_old_pos(world);
+		move_right(world);
+		world->player.frame = STAND_RIGHT;
+	}
+}

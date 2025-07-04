@@ -12,32 +12,32 @@
 
 #include "so_long.h"
 
-char	*get_map(int fd, t_world *world)
+void	exit_perror(const char *s)
+{
+	perror(s);
+	exit(EXIT_FAILURE);
+}
+
+static void	get_map(int fd, t_world *world)
 {
 	char	*line;
 	char	*tmp;
-	size_t	len;
 	int		state;
 
-	len = 0;
 	state = 0;
 	world->map = ft_strdup("");
 	if (!world->map)
-	{
-		perror("Error\nReason");
-		exit(1);
-	}
-	while ((line = get_next_line(fd, &state)) != NULL)
+		exit_perror("Error\nReason");
+	line = get_next_line(fd, &state);
+	while (line != NULL)
 	{
 		tmp = world->map;
 		world->map = ft_strjoin(world->map, line);
 		free(line);
 		free(tmp);
 		if (!world->map)
-		{
-			perror("Error\nReason");
-			exit (1);
-		}
+			exit_perror("Error\nReason");
+		line = get_next_line(fd, &state);
 	}
 	if (state != 2)
 	{
@@ -45,7 +45,6 @@ char	*get_map(int fd, t_world *world)
 		exit(1);
 	}
 	valid_map(world);
-	return (world->map);
 }
 
 static int	valid_file(char *file)
@@ -86,7 +85,7 @@ void	game_loop(int fd, t_world *world)
 	world_init(world);
 	draw_world(world);
 	mlx_hook(world->win_ptr, 17, 0, exit_hook, world);
-	mlx_hook(world->win_ptr, 2, 1L<<0, key_hook, world);
+	mlx_hook(world->win_ptr, 2, 1L << 0, key_hook, world);
 	mlx_loop_hook(world->mlx_ptr, draw_world, world);
 	mlx_loop(world->mlx_ptr);
 }

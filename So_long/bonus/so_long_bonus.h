@@ -33,6 +33,7 @@
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
+# define CLR 0x00F0FF00
 
 typedef enum s_frame
 {
@@ -94,6 +95,7 @@ size_t	valid_edge_row(t_world *world, size_t i);
 size_t	valid_mid_row(t_world *world, size_t i);
 //valid_path.c
 int		valid_path(t_world *world);
+void	get_player_pos(t_world *world);
 //grid_handling.c
 void	create_grid(t_world *world);
 void	copy_grid(t_world *world);
@@ -106,11 +108,16 @@ int		exit_hook(void *param);
 void	world_init(t_world *world);
 //draw.c
 int		draw_world(t_world *world);
+void	draw_animation(t_world *world, t_frame cur_frame);
 //move.c
 void	move_player(t_world *world, int keycode);
+void	move_right(t_world *world);
+void	move_down(t_world *world);
 //move_helpers.c
 void	set_col(t_world *world);
 void	check_exit(t_world *world);
 void	moves_update(t_world *world);
+void	move_player2(t_world *world, int keycode);
+void	remove_old_pos(t_world *world);
 
 #endif

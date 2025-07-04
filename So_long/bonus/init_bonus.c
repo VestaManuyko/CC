@@ -28,7 +28,7 @@ static void	player_init2(t_world *world)
 	if (!world->player.frames[4])
 		image_error(world);
 	world->player.frames[5] = mlx_xpm_file_to_image(world->mlx_ptr,
-			"textures/player/stand_right.xpm", &x, &y);
+			"textures/player/stand_left.xpm", &x, &y);
 	if (!world->player.frames[5])
 		image_error(world);
 	world->player.frames[6] = mlx_xpm_file_to_image(world->mlx_ptr,

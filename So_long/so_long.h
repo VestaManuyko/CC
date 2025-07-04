@@ -70,6 +70,8 @@ typedef struct s_world
 	int			steps;
 }	t_world;
 
+//main.c
+void	exit_perror(const char *s);
 //valid_map.c
 void	valid_map(t_world *world);
 //valid_map_helpers.c
