@@ -31,15 +31,18 @@ static void	get_map2(int fd, t_world *world)
 		if (!world->map)
 			exit_perror("Error\nReason");
 		if (!line_check)
-			error_exit(2);
+			world->bad_lines++;
 		line = get_next_line(fd, &state);
 	}
+	if (world->bad_lines != 0)
+		clean_up(world, MAP, EXIT_FAILURE);
 	if (state != 2)
 		error_exit(1);
 }
 
 static void	get_map(int fd, t_world *world)
 {
+	world->bad_lines = 0;
 	world->map = ft_strdup("");
 	get_map2(fd, world);
 	if (!world->map)
@@ -106,6 +109,7 @@ int	main(int argc, char **argv)
 			fd = open(argv[1], O_RDONLY);
 			if (fd < 0)
 				return (error_message(5));
+			world.mlx_ptr = NULL;
 			game_loop(fd, &world);
 		}
 	}

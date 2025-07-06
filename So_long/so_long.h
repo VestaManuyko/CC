@@ -68,6 +68,7 @@ typedef struct s_world
 	void		*win_ptr;
 	t_img		img_ptr;
 	int			steps;
+	int			bad_lines;
 }	t_world;
 
 //valid_map.c

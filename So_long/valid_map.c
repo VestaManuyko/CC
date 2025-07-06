@@ -100,11 +100,13 @@ void	valid_map(t_world *world)
 	if (!world->map || !world->map[0])
 	{
 		write (2, "Error\nEmpty file\n", 18);
-		exit(1);
+		clean_up(world, MAP, EXIT_FAILURE);
 	}
 	if (!rectangular_map(world) || !valid_composition(world)
-		|| !valid_wallframe(world) || !valid_path(world))
+		|| !valid_wallframe(world))
 		clean_up(world, MAP, EXIT_FAILURE);
+	if (!valid_path(world))
+		clean_up(world, ALL, EXIT_FAILURE);
 	else
 		return ;
 }
