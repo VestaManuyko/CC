@@ -19,7 +19,6 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <errno.h>
-# include <stdlib.h>
 
 # define MAP 6
 # define GRID 7
