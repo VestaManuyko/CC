@@ -44,9 +44,9 @@ static void	get_map(int fd, t_world *world)
 {
 	world->bad_lines = 0;
 	world->map = ft_strdup("");
-	get_map2(fd, world);
 	if (!world->map)
 		exit_perror("Error\nReason");
+	get_map2(fd, world);
 	valid_map(world);
 }
 
