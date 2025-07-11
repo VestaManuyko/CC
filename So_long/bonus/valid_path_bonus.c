@@ -44,6 +44,8 @@ static int	path_check(t_world *world, int y, int x, int *col)
 		return (0);
 	if (world->copy[y][x] == 'C')
 		(*col)++;
+	if (world->copy[y][x] == 'E' && (*col) != world->collectibles)
+		return (0);
 	if (world->copy[y][x] == 'E')
 		(*col)++;
 	world->copy[y][x] = 'S';
