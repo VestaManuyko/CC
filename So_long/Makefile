@@ -38,7 +38,7 @@ BSRC = bonus/main_bonus.c bonus/free_bonus.c bonus/valid_map_bonus.c \
 bonus/valid_map_helpers_bonus.c bonus/grid_handling_bonus.c \
 bonus/valid_path_bonus.c bonus/init_bonus.c bonus/hooks_bonus.c \
 bonus/draw_bonus.c bonus/move_bonus.c bonus/move_helpers_bonus.c \
-bonus/line_bonus.c
+bonus/line_bonus.c bonus/free_helpers_bonus.c
 #object files
 OBJ = $(LIBFTSRC:.c=.o)
 POBJ = $(PSRC:.c=.o)

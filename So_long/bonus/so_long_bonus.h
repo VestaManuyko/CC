@@ -102,6 +102,8 @@ void	create_grid(t_world *world);
 void	copy_grid(t_world *world);
 //free.c
 void	clean_up(t_world *world, int clean, int exit);
+//free_helpers.c
+void	free_map(t_world *world);
 //hooks.c
 int		key_hook(int keycode, void *param);
 int		exit_hook(void *param);

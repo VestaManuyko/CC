@@ -82,20 +82,14 @@ static void	free_moves(t_world *world)
 void	clean_up(t_world *world, int clean, int do_exit)
 {
 	if (clean == MAP)
-	{
-		if (world->map)
-			free(world->map);
-		world->map = NULL;
-	}
+		free_map(world);
 	else if (clean == GRID)
 		free_grid(world);
 	else if (clean == COPY)
 		free_copy(world);
 	else if (clean == ALL)
 	{
-		if (world->map)
-			free(world->map);
-		world->map = NULL;
+		free_map(world);
 		free_grid(world);
 		free_copy(world);
 		clean_windows(world);

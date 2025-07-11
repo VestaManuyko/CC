@@ -27,12 +27,12 @@ size_t	get_line_len(char *map)
 int	error_message(int n)
 {
 	if (n == 1)
-		write(2, "Error\nIncorrect wallframe\n", 27);
+		write (2, "Error\nIncorrect wallframe\n", 27);
 	else if (n == 2)
 		write (2, "Error\nInvalid map: not rectangular\n", 36);
 	else if (n == 3)
 	{
-		write(2, "Error\nIncorrect input! Expected 2 arguments\n", 45);
+		write (2, "Error\nIncorrect input! Expected 2 arguments\n", 45);
 		return (1);
 	}
 	else if (n == 4)

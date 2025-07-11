@@ -45,6 +45,8 @@ int	error_message(int n)
 		perror("Error\nOpening file failed");
 		return (1);
 	}
+	else if (n == 6)
+		write (2, "Error\nWrong char in the map\n", 28);
 	return (0);
 }
 

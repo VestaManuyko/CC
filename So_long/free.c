@@ -64,25 +64,28 @@ static void	clean_windows(t_world *world)
 	free(world->mlx_ptr);
 }
 
+static void	free_map(t_world *world)
+{
+	if (world->map)
+		free(world->map);
+	if (world->bad_lines != 0)
+		write(2, "Error\nWrong char in the map\n", 28);
+	world->map = NULL;
+}
+
 //check what needs to be freed based on enum passed as parameters
 //takes pointers from world struct and calls needed helpers
 void	clean_up(t_world *world, int clean, int do_exit)
 {
 	if (clean == MAP)
-	{
-		if (world->map)
-			free(world->map);
-		world->map = NULL;
-	}
+		free_map(world);
 	else if (clean == GRID)
 		free_grid(world);
 	else if (clean == COPY)
 		free_copy(world);
 	else if (clean == ALL)
 	{
-		if (world->map)
-			free(world->map);
-		world->map = NULL;
+		free_map(world);
 		free_grid(world);
 		free_copy(world);
 		if (world->mlx_ptr)
