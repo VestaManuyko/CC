@@ -56,7 +56,7 @@ static int	valid_file(char *file)
 	int		diff;
 
 	len = ft_strlen(file);
-	if (len < 5)
+	if (len < 10)
 		return (0);
 	diff = ft_strncmp(file + (len - 4), ".ber", 4);
 	if (!diff)

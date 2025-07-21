@@ -79,11 +79,11 @@ void	clean_up(t_world *world, int clean, int do_exit)
 {
 	if (clean == MAP)
 		free_map(world);
-	else if (clean == GRID)
+	if (clean == GRID)
 		free_grid(world);
-	else if (clean == COPY)
+	if (clean == COPY)
 		free_copy(world);
-	else if (clean == ALL)
+	if (clean == ALL)
 	{
 		free_map(world);
 		free_grid(world);
