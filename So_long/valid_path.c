@@ -80,9 +80,9 @@ int	valid_path(t_world *world)
 	get_player_pos(world);
 	copy_grid(world);
 	col_check(world, world->player.pos.y,
-			world->player.pos.x, &col);
+		world->player.pos.x, &col);
 	exit_check(world, world->player.pos.y,
-			world->player.pos.x, &ex);
+		world->player.pos.x, &ex);
 	if (col != world->collectibles || ex != 1)
 	{
 		write(2, "Error\nNo valid path in the map\n", 32);
