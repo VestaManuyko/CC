@@ -35,16 +35,11 @@ int	check_line(char *line)
 	return (1);
 }
 
-void	error_exit(int n)
+void	error_exit(int n, t_world *world)
 {
 	if (n == 1)
 	{
 		write(2, "Error\nReason: get_next_line failed\n", 36);
-		exit(1);
-	}
-	if (n == 2)
-	{
-		write(2, "Error\nInvalid map composition\n", 31);
-		exit(1);
+		clean_up(world, MAP, EXIT_FAILURE);
 	}
 }

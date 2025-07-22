@@ -25,6 +25,8 @@ void	get_map2(int fd, t_world *world)
 	{
 		tmp = world->map;
 		line_check = check_line(line);
+		if (!line)
+			clean_up(world, MAP, EXIT_FAILURE);
 		world->map = ft_strjoin(world->map, line);
 		free(line);
 		free(tmp);
@@ -34,10 +36,8 @@ void	get_map2(int fd, t_world *world)
 			world->bad_lines++;
 		line = get_next_line(fd, &state);
 	}
-	if (world->bad_lines != 0)
-		clean_up(world, MAP, EXIT_FAILURE);
 	if (state != 2)
-		error_exit(1);
+		error_exit(1, world);
 }
 
 void	get_map(int fd, t_world *world)
@@ -47,6 +47,8 @@ void	get_map(int fd, t_world *world)
 	if (!world->map)
 		exit_perror("Error\nReason");
 	get_map2(fd, world);
+	if (world->bad_lines != 0)
+		clean_up(world, MAP, EXIT_FAILURE);
 	valid_map(world);
 }
 

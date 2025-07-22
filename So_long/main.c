@@ -21,7 +21,9 @@ static void	get_map2(int fd, t_world *world)
 
 	state = 0;
 	line = get_next_line(fd, &state);
-	while (line != NULL)
+	if (!line)
+		clean_up(world, MAP, EXIT_FAILURE);
+	while (line)
 	{
 		tmp = world->map;
 		line_check = check_line(line);
@@ -34,10 +36,8 @@ static void	get_map2(int fd, t_world *world)
 			world->bad_lines++;
 		line = get_next_line(fd, &state);
 	}
-	if (world->bad_lines != 0)
-		clean_up(world, MAP, EXIT_FAILURE);
 	if (state != 2)
-		error_exit(1);
+		error_exit(1, world);
 }
 
 static void	get_map(int fd, t_world *world)
@@ -47,6 +47,8 @@ static void	get_map(int fd, t_world *world)
 	if (!world->map)
 		exit_perror("Error\nReason");
 	get_map2(fd, world);
+	if (world->bad_lines != 0)
+		clean_up(world, MAP, EXIT_FAILURE);
 	valid_map(world);
 }
 
@@ -82,7 +84,7 @@ void	game_loop(int fd, t_world *world)
 	world->win_ptr = mlx_new_window(world->mlx_ptr, x, y, "So_long");
 	if (!world->win_ptr)
 	{
-		perror("Error\nMlx window creation failure");
+		perror("Error\nMlx window creatclean_up(world, MAP, EXIT_FAILURE);ion failure");
 		clean_up(world, ALL, EXIT_FAILURE);
 	}
 	world_init(world);

@@ -38,7 +38,7 @@ static void	get_player_pos(t_world *world)
 // flood filling algorithm used to check all the walkable paths etc.
 static int	col_check(t_world *world, int y, int x, int *col)
 {
-	if (y < 0 || x < 0 || y > world->grid_size.y || x > world->grid_size.x)
+	if (y < 0 || x < 0 || y >= world->grid_size.y || x >= world->grid_size.x)
 		return (0);
 	if (world->copy[y][x] == '1' || world->copy[y][x] == 'S'
 		|| world->copy[y][x] == 'E')
@@ -55,7 +55,7 @@ static int	col_check(t_world *world, int y, int x, int *col)
 
 static int	exit_check(t_world *world, int y, int x, int *ex)
 {
-	if (y < 0 || x < 0 || y > world->grid_size.y || x > world->grid_size.x)
+	if (y < 0 || x < 0 || y >= world->grid_size.y || x >= world->grid_size.x)
 		return (0);
 	if (world->copy[y][x] == '1' || world->copy[y][x] == 'D')
 		return (0);

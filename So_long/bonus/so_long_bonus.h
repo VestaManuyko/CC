@@ -125,6 +125,6 @@ void	remove_old_pos(t_world *world);
 //line.c
 void	exit_perror(const char *s);
 int		check_line(char *line);
-void	error_exit(int n);
+void	error_exit(int n, t_world *world);
 
 #endif

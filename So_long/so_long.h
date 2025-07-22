@@ -100,6 +100,6 @@ void	check_exit(t_world *world);
 //line.c
 int		check_line(char *line);
 void	exit_perror(const char *s);
-void	error_exit(int n);
+void	error_exit(int n, t_world *world);
 
 #endif
