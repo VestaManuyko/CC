@@ -12,10 +12,10 @@
 
 #include "so_long_bonus.h"
 
-void	exit_perror(const char *s)
+void	exit_perror(const char *s, t_world *world)
 {
 	perror(s);
-	exit(EXIT_FAILURE);
+	clean_up(world, ALL, EXIT_FAILURE);
 }
 
 int	check_line(char *line)

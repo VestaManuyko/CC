@@ -27,7 +27,7 @@ static char	**create_copy(t_world *world)
 	{
 		world->copy[y] = malloc(sizeof(char) * world->grid_size.x);
 		if (!world->copy[y])
-			exit_perror("Error\nCreation of copy_grid failed");
+			exit_perror("Error\nCreation of copy_grid failed", world);
 		y++;
 	}
 	return (world->copy);
@@ -96,10 +96,7 @@ void	create_grid(t_world *world)
 		world->grid[y] = NULL;
 		world->grid[y] = malloc(sizeof(char) * world->grid_size.x);
 		if (!world->grid[y])
-		{
-			perror("Error\nCreation of grid failed");
-			clean_up(world, MAP, EXIT_FAILURE);
-		}
+			exit_perror("Error\nCreation of grid failed", world);
 		y++;
 	}
 	init_grid(world);

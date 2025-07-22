@@ -99,7 +99,7 @@ void	set_col(t_world *world);
 void	check_exit(t_world *world);
 //line.c
 int		check_line(char *line);
-void	exit_perror(const char *s);
+void	exit_perror(const char *s, t_world *world);
 void	error_exit(int n, t_world *world);
 
 #endif

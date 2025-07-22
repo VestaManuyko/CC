@@ -123,7 +123,7 @@ void	moves_update(t_world *world);
 void	move_player2(t_world *world, int keycode);
 void	remove_old_pos(t_world *world);
 //line.c
-void	exit_perror(const char *s);
+void	exit_perror(const char *s, t_world *world);
 int		check_line(char *line);
 void	error_exit(int n, t_world *world);
 

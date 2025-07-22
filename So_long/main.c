@@ -31,7 +31,7 @@ static void	get_map2(int fd, t_world *world)
 		free(line);
 		free(tmp);
 		if (!world->map)
-			exit_perror("Error\nReason");
+			exit_perror("Error\nReason", world);
 		if (!line_check)
 			world->bad_lines++;
 		line = get_next_line(fd, &state);
@@ -45,7 +45,7 @@ static void	get_map(int fd, t_world *world)
 	world->bad_lines = 0;
 	world->map = ft_strdup("");
 	if (!world->map)
-		exit_perror("Error\nReason");
+		exit_perror("Error\nReason", world);
 	get_map2(fd, world);
 	if (world->bad_lines != 0)
 		clean_up(world, MAP, EXIT_FAILURE);
@@ -112,6 +112,8 @@ int	main(int argc, char **argv)
 			if (fd < 0)
 				return (error_message(5));
 			world.mlx_ptr = NULL;
+			world.grid = NULL;
+			world.copy = NULL;
 			game_loop(fd, &world);
 		}
 	}

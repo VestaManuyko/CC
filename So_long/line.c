@@ -29,10 +29,10 @@ int	check_line(char *line)
 	return (1);
 }
 
-void	exit_perror(const char *s)
+void	exit_perror(const char *s, t_world *world)
 {
 	perror(s);
-	exit(EXIT_FAILURE);
+	clean_up(world, ALL, EXIT_FAILURE);
 }
 
 void	error_exit(int n, t_world *world)
