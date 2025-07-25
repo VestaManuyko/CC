@@ -59,4 +59,9 @@ void	struct_init(t_world *world)
 	world->mlx_ptr = NULL;
 	world->steps = 0;
 	world->win_ptr = NULL;
+	world->img_ptr.background = NULL;
+	world->img_ptr.col = NULL;
+	world->img_ptr.exit = NULL;
+	world->img_ptr.player = NULL;
+	world->img_ptr.wall = NULL;
 }

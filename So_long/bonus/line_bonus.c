@@ -51,6 +51,9 @@ void	error_exit(int n, t_world *world)
 
 void	struct_init(t_world *world)
 {
+	size_t	i;
+
+	i = 0;
 	world->bad_lines = 0;
 	world->collectibles = 0;
 	world->copy = NULL;
@@ -59,4 +62,16 @@ void	struct_init(t_world *world)
 	world->mlx_ptr = NULL;
 	world->moves = NULL;
 	world->win_ptr = NULL;
+	world->img_ptr.background = NULL;
+	world->img_ptr.col = NULL;
+	world->img_ptr.exit = NULL;
+	world->img_ptr.wall = NULL;
+	world->player.frames[0] = NULL;
+	world->player.frames[1] = NULL;
+	world->player.frames[2] = NULL;
+	world->player.frames[3] = NULL;
+	world->player.frames[4] = NULL;
+	world->player.frames[5] = NULL;
+	world->player.frames[6] = NULL;
+	world->player.frames[7] = NULL;
 }

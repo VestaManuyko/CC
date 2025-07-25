@@ -51,7 +51,7 @@ static void	clean_windows(t_world *world)
 	int	i;
 
 	i = 0;
-	if (world->mlx_ptr)
+	if (world && world->mlx_ptr)
 	{
 		if (world->img_ptr.background)
 			mlx_destroy_image(world->mlx_ptr, world->img_ptr.background);

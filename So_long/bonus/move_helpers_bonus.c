@@ -33,6 +33,8 @@ void	moves_update(t_world *world)
 		world->moves = NULL;
 	}
 	world->moves = ft_itoa(world->player.steps);
+	if (!world->moves)
+		clean_up(world, ALL, EXIT_FAILURE);
 }
 
 void	remove_old_pos(t_world *world)
