@@ -68,6 +68,7 @@ typedef struct s_world
 	t_img		img_ptr;
 	int			steps;
 	int			bad_lines;
+	int			fd;
 }	t_world;
 
 //valid_map.c
@@ -101,5 +102,6 @@ void	check_exit(t_world *world);
 int		check_line(char *line);
 void	exit_perror(const char *s, t_world *world);
 void	error_exit(int n, t_world *world);
+void	struct_init(t_world *world);
 
 #endif

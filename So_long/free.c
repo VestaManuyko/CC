@@ -77,6 +77,11 @@ static void	free_map(t_world *world)
 //takes pointers from world struct and calls needed helpers
 void	clean_up(t_world *world, int clean, int do_exit)
 {
+	if (do_exit != NO_EXIT)
+	{
+		close (world->fd);
+		world->fd = -1;
+	}
 	if (clean == MAP)
 		free_map(world);
 	if (clean == GRID)

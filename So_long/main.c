@@ -22,7 +22,7 @@ static void	get_map2(int fd, t_world *world)
 	state = 0;
 	line = get_next_line(fd, &state);
 	if (!line)
-		clean_up(world, MAP, EXIT_FAILURE);
+		error_exit(2, world);
 	while (line)
 	{
 		tmp = world->map;
@@ -73,6 +73,7 @@ void	game_loop(int fd, t_world *world)
 	int	y;
 
 	get_map(fd, world);
+	world->mlx_ptr = NULL;
 	world->mlx_ptr = mlx_init();
 	if (!world->mlx_ptr)
 	{
@@ -84,7 +85,7 @@ void	game_loop(int fd, t_world *world)
 	world->win_ptr = mlx_new_window(world->mlx_ptr, x, y, "So_long");
 	if (!world->win_ptr)
 	{
-		perror("Error\nMlx window creatclean_up(world, MAP, EXIT_FAILURE);ion failure");
+		perror("Error\nMlx window creation failure");
 		clean_up(world, ALL, EXIT_FAILURE);
 	}
 	world_init(world);
@@ -97,7 +98,6 @@ void	game_loop(int fd, t_world *world)
 
 int	main(int argc, char **argv)
 {
-	int		fd;
 	t_world	world;
 
 	if (argc != 2)
@@ -108,13 +108,11 @@ int	main(int argc, char **argv)
 			return (error_message(4));
 		else
 		{
-			fd = open(argv[1], O_RDONLY);
-			if (fd < 0)
+			world.fd = open(argv[1], O_RDONLY);
+			if (world.fd < 0)
 				return (error_message(5));
-			world.mlx_ptr = NULL;
-			world.grid = NULL;
-			world.copy = NULL;
-			game_loop(fd, &world);
+			struct_init(&world);
+			game_loop(world.fd, &world);
 		}
 	}
 }

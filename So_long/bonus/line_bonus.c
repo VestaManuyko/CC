@@ -42,4 +42,21 @@ void	error_exit(int n, t_world *world)
 		write(2, "Error\nReason: get_next_line failed\n", 36);
 		clean_up(world, MAP, EXIT_FAILURE);
 	}
+	if (n == 2)
+	{
+		write(2, "Error\nReason: no line\n", 23);
+		clean_up(world, MAP, EXIT_FAILURE);
+	}
+}
+
+void	struct_init(t_world *world)
+{
+	world->bad_lines = 0;
+	world->collectibles = 0;
+	world->copy = NULL;
+	world->grid = NULL;
+	world->map = NULL;
+	world->mlx_ptr = NULL;
+	world->moves = NULL;
+	world->win_ptr = NULL;
 }

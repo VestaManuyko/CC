@@ -84,6 +84,7 @@ typedef struct s_world
 	t_img		img_ptr;
 	char		*moves;
 	int			bad_lines;
+	int			fd;
 }	t_world;
 
 //valid_map.c
@@ -126,5 +127,6 @@ void	remove_old_pos(t_world *world);
 void	exit_perror(const char *s, t_world *world);
 int		check_line(char *line);
 void	error_exit(int n, t_world *world);
+void	struct_init(t_world *world);
 
 #endif

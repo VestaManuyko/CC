@@ -21,12 +21,12 @@ void	get_map2(int fd, t_world *world)
 
 	state = 0;
 	line = get_next_line(fd, &state);
-	while (line != NULL)
+	if (!line)
+		error_exit(2, world);
+	while (line)
 	{
 		tmp = world->map;
 		line_check = check_line(line);
-		if (!line)
-			clean_up(world, MAP, EXIT_FAILURE);
 		world->map = ft_strjoin(world->map, line);
 		free(line);
 		free(tmp);
@@ -98,7 +98,6 @@ void	game_loop(int fd, t_world *world)
 
 int	main(int argc, char **argv)
 {
-	int		fd;
 	t_world	world;
 
 	if (argc != 2)
@@ -109,14 +108,11 @@ int	main(int argc, char **argv)
 			return (error_message(4));
 		else
 		{
-			fd = open(argv[1], O_RDONLY);
-			if (fd < 0)
+			world.fd = open(argv[1], O_RDONLY);
+			if (world.fd < 0)
 				return (error_message(5));
-			world.mlx_ptr = NULL;
-			world.moves = NULL;
-			world.grid = NULL;
-			world.copy = NULL;
-			game_loop(fd, &world);
+			struct_init(&world);
+			game_loop(world.fd, &world);
 		}
 	}
 }
