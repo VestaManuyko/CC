@@ -51,7 +51,7 @@ void	draw_animation(t_world *world, t_frame cur_frame)
 		world->player.pos.y * TILE_SIZE);
 	mlx_do_sync(world->mlx_ptr);
 	mlx_string_put(world->mlx_ptr, world->win_ptr, 1, 10, CLR, world->moves);
-	usleep(20000);
+	usleep(10000);
 }
 
 int	draw_world(t_world *world)
