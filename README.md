@@ -1,0 +1,1 @@
+My start at 42 Vienna with C language and some simple projects done so far, including a small 2D game "So_long", my own small printf function, a library with some basics made by me called libft and a program that reads a file line by line called "Get_next_line".
